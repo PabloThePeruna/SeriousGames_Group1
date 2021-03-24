@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 34ab956704d55994f8d919a2450b2114
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: News Cycle
+  fontNames:
+  - News Cycle
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: c0c63e6665b5d2942aa2ac3394d32b8c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
