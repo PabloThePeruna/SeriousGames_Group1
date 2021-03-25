@@ -54,21 +54,7 @@ public class ZoomingPaningRotating : MonoBehaviour
             pervPos = cam.ScreenToViewportPoint(Input.mousePosition);
 
         }
-        if (Input.touchCount == 2)
-        {
-            Touch touchFirst = Input.GetTouch(0);
-            Touch touchSecond = Input.GetTouch(1);
-
-            Vector2 firstTouchPrevPos = touchFirst.position - touchFirst.deltaPosition;
-            Vector2 secondTouchPrevPos = touchSecond.position - touchSecond.deltaPosition;
-
-            float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
-            float currentMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
-
-            float difference = currentMagnitude - prevMagnitude;
-
-
-        }
+      
        
 
     }
