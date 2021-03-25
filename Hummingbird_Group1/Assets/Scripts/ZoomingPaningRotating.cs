@@ -6,10 +6,10 @@ public class ZoomingPaningRotating : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
-    [SerializeField] private float zoomOutMin=1;
+    [SerializeField] private float zoomOutMin = 1;
     [SerializeField] private float zoomOutMax = 8;
     private Vector3 pervPos;
-    float difference;
+
     [SerializeField] private float slowDownTime = 0.01f;
 
     Vector3 dir;
@@ -17,8 +17,23 @@ public class ZoomingPaningRotating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Zoom(difference* slowDownTime);
+        
         Rotation();
+        if (Input.touchCount == 2)
+        {
+            Touch touchFirst = Input.GetTouch(0);
+            Touch touchSecond = Input.GetTouch(1);
+
+            Vector2 firstTouchPrevPos = touchFirst.position - touchFirst.deltaPosition;
+            Vector2 secondTouchPrevPos = touchSecond.position - touchSecond.deltaPosition;
+
+            float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
+            float currentMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
+
+            float difference = currentMagnitude - prevMagnitude;
+            Zoom(difference * slowDownTime);
+
+        }
     }
     void Rotation()
     {
@@ -37,13 +52,9 @@ public class ZoomingPaningRotating : MonoBehaviour
             cam.transform.Translate(new Vector3(0, 0, -10));
 
             pervPos = cam.ScreenToViewportPoint(Input.mousePosition);
+
         }
-
-
-    }
-    void Zoom(float diffrence)
-    {
-        if(Input.touchCount== 2)
+        if (Input.touchCount == 2)
         {
             Touch touchFirst = Input.GetTouch(0);
             Touch touchSecond = Input.GetTouch(1);
@@ -54,10 +65,16 @@ public class ZoomingPaningRotating : MonoBehaviour
             float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
             float currentMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
 
-            difference = currentMagnitude - prevMagnitude;
+            float difference = currentMagnitude - prevMagnitude;
 
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - diffrence, zoomOutMin, zoomOutMax);
+
         }
+       
+
     }
-    
+    void Zoom(float diffrence)
+    {
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - diffrence, zoomOutMin, zoomOutMax);
+
+    }
 }
