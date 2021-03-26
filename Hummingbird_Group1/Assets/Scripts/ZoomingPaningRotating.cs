@@ -21,8 +21,9 @@ public class ZoomingPaningRotating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Zoom(Input.GetAxis("Mouse ScrollWheel"));
 
-        Rotation();
+        //Rotation();
 
 
         //Two fingers on screen
@@ -52,10 +53,11 @@ public class ZoomingPaningRotating : MonoBehaviour
             Zoom(difference * slowDownTime);
             diffText.text = (difference.ToString());
 
+           
         }
         else
         {
-            logText.text = ("No fingers");
+            Rotation();
         }
 
 
