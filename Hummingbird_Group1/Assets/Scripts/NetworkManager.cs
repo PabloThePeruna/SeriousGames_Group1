@@ -8,19 +8,13 @@ using TMPro;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
-    private int emptyRoomTtl = 60000; // in milliseconds
+    private int emptyRoomTtl = 60000; // in milliseconds, 1 min
     private int maxPlayersPerRoom = 2;
-    [SerializeField] private string roomCode;
+    public string roomCode;
 
     private string nicknameKey = "Nickname";
 
-    public GameObject homeScreen;
-    public GameObject multiplayerStartScreen;
-    public GameObject waitingScreen;
-    public GameObject joinRoomScreen;
-
-    public TextMeshProUGUI roomCodeText;
-    public TextMeshProUGUI playerListText;
+    [SerializeField] private PhotonView canvasPhotonView;
 
     private void Awake()
     {
@@ -71,19 +65,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         roomCode = Random.Range(1000, 10000).ToString();
 
         PhotonNetwork.CreateRoom(roomCode, options);
-
-        UpdateLobbyUI();
-    }
-
-    void UpdateLobbyUI()
-    {
-        roomCodeText.text = roomCode;
-        playerListText.text = "";
-
-        foreach (var player in PhotonNetwork.PlayerList)
-        {
-            playerListText.text += player.NickName + "\n";
-        }
     }
 
     public void JoinRoom(string roomName)
@@ -91,9 +72,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(roomCode);
     }
 
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    [PunRPC]
+    public override void OnLeftRoom()
+    {
+        canvasPhotonView.RPC("UpdateRoomUI", RpcTarget.All);
+    }
+
+    [PunRPC]
     public override void OnJoinedRoom()
     {
-        UpdateLobbyUI();
+        canvasPhotonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -122,9 +115,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel(0);
     }
 
-    public void StartGame()
+    public void LoadLevel(int scene)
     {
-        Debug.Log("Start Game!");
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(scene);
     }
 }

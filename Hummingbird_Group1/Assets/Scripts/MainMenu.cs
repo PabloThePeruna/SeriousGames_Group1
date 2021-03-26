@@ -2,20 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void PlayGame()
+    public GameObject homeScreen;
+    public GameObject multiplayerStartScreen;
+    public GameObject waitingScreen;
+    public GameObject joinRoomScreen;
+
+    public TextMeshProUGUI roomCodeText;
+    public TextMeshProUGUI playerListText;
+    public GameObject startButton;
+
+    private void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        homeScreen.SetActive(true);
+        multiplayerStartScreen.SetActive(false);
+        waitingScreen.SetActive(false);
+        joinRoomScreen.SetActive(false);
     }
 
-    // Update is called once per frame
+    public void PlayGame()
+    {
+        Debug.Log("Start Game!");
+        NetworkManager.instance.LoadLevel(1);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quit");
         Application.Quit();
 
+    }
+
+    [PunRPC]
+    public void UpdateRoomUI()
+    {
+        roomCodeText.text = NetworkManager.instance.roomCode;
+        playerListText.text = "";
+
+        foreach (var player in PhotonNetwork.PlayerList)
+        {
+            playerListText.text += player.NickName + "\n";
+        }
     }
 }
