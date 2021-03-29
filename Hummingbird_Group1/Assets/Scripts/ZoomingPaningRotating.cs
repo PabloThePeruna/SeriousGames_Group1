@@ -9,28 +9,22 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float zoomOutMin = 1; //max zoom in value
     [SerializeField] private float zoomOutMax = 8; //Max zoom out value
-    private Vector3 prevPos; 
     bool IsZooming = false;
-    public Text logText;
-    public Text diffText;
 
     [SerializeField] private float slowDownTime = 0.005f;
 
     Vector3 dir;
+    private Vector3 prevPos;
+
 
     // Update is called once per frame
     void Update()
     {
-        //Zoom(Input.GetAxis("Mouse ScrollWheel"));
-
-        //Rotation();
-
 
         //Two fingers on screen
         if (Input.touchCount == 2) //Check if two fingers are on screen
         {
             IsZooming = true;
-            logText.text = ("Two fingers on screen");
             Touch touchFirst = Input.GetTouch(0); //store touch
             Touch touchSecond = Input.GetTouch(1);
 
@@ -40,21 +34,15 @@ public class ZoomingPaningRotating : MonoBehaviour
             Debug.Log("touchFirstPos " + touchFirst.position);
             Debug.Log("touchSecondPos " + touchSecond.position);
 
-
-
             float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude; //calculate to difference beetween previous positions
             float currentMagnitude = (touchFirst.position - touchSecond.position).magnitude; //Calculate the difference between the current positions
-
-
+            
             Debug.Log("prevMagnitude " + prevMagnitude);
             Debug.Log("currentMagnitude " + currentMagnitude);
-
-
+            
             float difference = currentMagnitude - prevMagnitude; // Calculate the difference and Zoom by that amount
             Zoom(difference * slowDownTime);
-            diffText.text = (difference.ToString());
-            
-           
+                       
         }
 
         //if we have only one finger curently active we can sart to rotate
@@ -92,15 +80,11 @@ public class ZoomingPaningRotating : MonoBehaviour
             prevPos = cam.ScreenToViewportPoint(Input.mousePosition); // assign the new position calculated to be the old position
             
         }
-      
-       
-
+             
     }
     void Zoom(float difference)
     {
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - difference, zoomOutMin, zoomOutMax);
-       
-       
-
+           
     }
 }

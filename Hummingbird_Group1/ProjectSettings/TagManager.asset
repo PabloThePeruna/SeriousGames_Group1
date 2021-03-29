@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - f_body
+  - f_liver
+  - f_brain
+  - f_lungs
+  - f_heart
+  - m_body
+  - m_liver
+  - m_brain
+  - m_lungs
+  - m_heart
   layers:
   - Default
   - TransparentFX
@@ -13,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - m_body
   - 
   - 
   - 
