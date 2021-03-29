@@ -10,7 +10,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private float zoomOutMin = 1; //max zoom in value
     [SerializeField] private float zoomOutMax = 8; //Max zoom out value
     private Vector3 prevPos; 
-    bool IsZooming= false;
+    bool IsZooming = false;
     public Text logText;
     public Text diffText;
 
@@ -58,12 +58,12 @@ public class ZoomingPaningRotating : MonoBehaviour
         }
 
         //if we have only one finger curently active we can sart to rotate
-        else if(Input.touchCount==1 &&Input.GetTouch(0).phase==TouchPhase.Began) 
+        else if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) 
         {
             IsZooming = false;
 
         }
-        if(IsZooming== false)
+        if (IsZooming == false)
         {
             Rotation();
         }
