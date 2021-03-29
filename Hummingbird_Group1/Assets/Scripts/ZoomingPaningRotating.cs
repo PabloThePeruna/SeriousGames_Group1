@@ -7,8 +7,8 @@ public class ZoomingPaningRotating : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
-    [SerializeField] private float zoomOutMin = 1; //max zoom in value
-    [SerializeField] private float zoomOutMax = 8; //Max zoom out value
+    [SerializeField] private float zoomOutMin = 0.1f; //max zoom in value
+    [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
 
     [SerializeField] private float slowDownTime = 0.005f;
@@ -20,7 +20,9 @@ public class ZoomingPaningRotating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //PLEASE DON'T REMOVE THIS LINE EASIER TO DEBUG ON PC
 
+        Zoom(Input.GetAxis("Mouse ScrollWheel"));
         //Two fingers on screen
         if (Input.touchCount == 2) //Check if two fingers are on screen
         {
