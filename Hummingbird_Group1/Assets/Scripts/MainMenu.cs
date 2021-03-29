@@ -40,6 +40,8 @@ public class MainMenu : MonoBehaviour
     [PunRPC]
     public void UpdateRoomUI()
     {
+        startButton.SetActive(PhotonNetwork.IsMasterClient);
+
         roomCodeText.text = NetworkManager.instance.roomCode;
         playerListText.text = "";
 
