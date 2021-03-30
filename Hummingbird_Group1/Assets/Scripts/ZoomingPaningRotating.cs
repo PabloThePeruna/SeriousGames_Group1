@@ -10,11 +10,21 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private float zoomOutMin = 0.1f; //max zoom in value
     [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
+    private OrganSelect oS;
+    
 
     [SerializeField] private float slowDownTime = 0.005f;
 
     Vector3 dir;
     private Vector3 prevPos;
+
+
+    private void Start()
+    {
+        oS = FindObjectOfType<OrganSelect>();
+    }
+
+
 
 
     // Update is called once per frame
@@ -23,40 +33,12 @@ public class ZoomingPaningRotating : MonoBehaviour
         //PLEASE DON'T REMOVE THIS LINE EASIER TO DEBUG ON PC
 
         Zoom(Input.GetAxis("Mouse ScrollWheel"));
-        //Two fingers on screen
-        if (Input.touchCount == 2) //Check if two fingers are on screen
-        {
-            IsZooming = true;
-            Touch touchFirst = Input.GetTouch(0); //store touch
-            Touch touchSecond = Input.GetTouch(1);
 
-            Vector2 firstTouchPrevPos = touchFirst.position - touchFirst.deltaPosition; // Calculate the fingers position on screen
-            Vector2 secondTouchPrevPos = touchSecond.position - touchSecond.deltaPosition;
+        ZoomCalculations();
 
-            Debug.Log("touchFirstPos " + touchFirst.position);
-            Debug.Log("touchSecondPos " + touchSecond.position);
+        Body();
 
-            float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude; //calculate to difference beetween previous positions
-            float currentMagnitude = (touchFirst.position - touchSecond.position).magnitude; //Calculate the difference between the current positions
-            
-            Debug.Log("prevMagnitude " + prevMagnitude);
-            Debug.Log("currentMagnitude " + currentMagnitude);
-            
-            float difference = currentMagnitude - prevMagnitude; // Calculate the difference and Zoom by that amount
-            Zoom(difference * slowDownTime);
-                       
-        }
-
-        //if we have only one finger curently active we can sart to rotate
-        else if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began) 
-        {
-            IsZooming = false;
-
-        }
-        if (IsZooming == false)
-        {
-            Rotation();
-        }
+        ZoomOrgan();
 
 
 
@@ -88,5 +70,69 @@ public class ZoomingPaningRotating : MonoBehaviour
     {
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - difference, zoomOutMin, zoomOutMax);
            
+    }
+
+    void ZoomCalculations()
+    {
+        if (Input.touchCount == 2) //Check if two fingers are on screen
+        {
+            IsZooming = true;
+            Touch touchFirst = Input.GetTouch(0); //store touch
+            Touch touchSecond = Input.GetTouch(1);
+
+            Vector2 firstTouchPrevPos = touchFirst.position - touchFirst.deltaPosition; // Calculate the fingers position on screen
+            Vector2 secondTouchPrevPos = touchSecond.position - touchSecond.deltaPosition;
+
+            Debug.Log("touchFirstPos " + touchFirst.position);
+            Debug.Log("touchSecondPos " + touchSecond.position);
+
+            float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude; //calculate to difference beetween previous positions
+            float currentMagnitude = (touchFirst.position - touchSecond.position).magnitude; //Calculate the difference between the current positions
+
+            Debug.Log("prevMagnitude " + prevMagnitude);
+            Debug.Log("currentMagnitude " + currentMagnitude);
+
+            float difference = currentMagnitude - prevMagnitude; // Calculate the difference and Zoom by that amount
+            Zoom(difference * slowDownTime);
+
+        }
+
+        //if we have only one finger curently active we can sart to rotate
+        else if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            IsZooming = false;
+
+        }
+        if (IsZooming == false)
+        {
+            Rotation();
+        }
+    }
+
+    void Body()
+    {
+        if (Input.touchCount==1 && Input.GetTouch(0).tapCount == 2)
+        {
+            Debug.Log("got past");
+            //oS.SkinActivate();
+        }
+
+    }
+    void ZoomOrgan()
+    {
+        if(Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began)
+        {
+            Ray ray = cam.ScreenPointToRay(Input.touches[0].position);
+
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray,out hit))
+            {
+                if (hit.collider.CompareTag("m_body"))
+                {
+                    oS.SkinActivate();
+                }
+            }
+        }
     }
 }

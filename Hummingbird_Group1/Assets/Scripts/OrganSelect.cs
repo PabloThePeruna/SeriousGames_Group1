@@ -34,16 +34,7 @@ public class OrganSelect : MonoBehaviour
 
         //When other organ than skin is selected, make body transparent
         scrollOrgans(maleOrganSelector);
-        if (maleOrganSelector > 0)
-        {
-            maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
-            groins.SetActive(false);
-        }
-        else
-        {
-            maleOrgans[0].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-            groins.SetActive(true);
-        }
+        SkinActivate();
 
         //If brains is selected
         if (maleOrganSelector == 1)
@@ -86,6 +77,22 @@ public class OrganSelect : MonoBehaviour
         }
 
 
+    }
+
+   public void SkinActivate()
+    {
+        //When other organ than skin is selected, make body transparent
+
+        if (maleOrganSelector > 0)
+        {
+            maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
+            groins.SetActive(false);
+        }
+        else
+        {
+            maleOrgans[0].GetComponent<MeshRenderer>().material = normalSkinMaterial;
+            groins.SetActive(true);
+        }
     }
 
     void scrollOrgans(int organNumber)
