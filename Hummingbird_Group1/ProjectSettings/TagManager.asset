@@ -14,6 +14,7 @@ TagManager:
   - m_brain
   - m_lungs
   - m_heart
+  - male
   layers:
   - Default
   - TransparentFX
