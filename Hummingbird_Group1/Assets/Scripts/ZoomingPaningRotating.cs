@@ -38,7 +38,9 @@ public class ZoomingPaningRotating : MonoBehaviour
 
         Body();
 
-       
+        EnlargenOrgan();
+
+
 
 
 
@@ -124,6 +126,7 @@ public class ZoomingPaningRotating : MonoBehaviour
                 {
                     oS.maleOrganSelector = 1;
                     target = oS.maleOrgans[1].transform;
+                    oS.maleOrgans[1].tag = "selected";
 
                 }
             }
@@ -131,7 +134,35 @@ public class ZoomingPaningRotating : MonoBehaviour
         else if(Input.touchCount == 1 && Input.GetTouch(0).tapCount == 3)
         {
             oS.maleOrganSelector = 0;
+           
+
+            foreach (GameObject organs in oS.maleOrgans)
+            {
+                if(organs.tag== "unselected")
+                {
+                    organs.SetActive(true);
+                }
+                
+            }
             target = GameObject.Find("male_body").transform;
+        }
+    }
+
+    void EnlargenOrgan()
+    {
+        if (oS.maleOrganSelector == 1 && Input.touchCount == 1 && Input.GetTouch(0).tapCount == 2 ) 
+        {
+            foreach(GameObject organs in oS.maleOrgans)
+            {
+                if (organs.tag == "unselected")
+                {
+                    organs.SetActive(false);
+                }
+            }
+
+            cam.orthographicSize = 1;
+
+
         }
     }
 }
