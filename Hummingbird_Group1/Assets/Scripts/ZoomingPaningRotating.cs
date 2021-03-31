@@ -11,7 +11,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
     private OrganSelect oS;
-    
+
 
     [SerializeField] private float slowDownTime = 0.005f;
 
@@ -38,7 +38,7 @@ public class ZoomingPaningRotating : MonoBehaviour
 
         Body();
 
-        ZoomOrgan();
+       
 
 
 
@@ -47,9 +47,9 @@ public class ZoomingPaningRotating : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
+
             prevPos = cam.ScreenToViewportPoint(Input.mousePosition);
-            
+
         }
 
         if (Input.GetMouseButton(0))
@@ -62,14 +62,14 @@ public class ZoomingPaningRotating : MonoBehaviour
             cam.transform.Translate(new Vector3(0, 0, -10)); //offset camera
 
             prevPos = cam.ScreenToViewportPoint(Input.mousePosition); // assign the new position calculated to be the old position
-            
+
         }
-             
+
     }
     void Zoom(float difference)
     {
         cam.orthographicSize = Mathf.Clamp(cam.orthographicSize - difference, zoomOutMin, zoomOutMax);
-           
+
     }
 
     void ZoomCalculations()
@@ -111,28 +111,28 @@ public class ZoomingPaningRotating : MonoBehaviour
 
     void Body()
     {
-        if (Input.touchCount==1 && Input.GetTouch(0).tapCount == 2)
-        {
-            Debug.Log("got past");
-            //oS.SkinActivate();
-        }
 
-    }
-    void ZoomOrgan()
-    {
-        if(Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began)
+        if (Input.touchCount==1 && Input.GetTouch(0).tapCount==2)
         {
             Ray ray = cam.ScreenPointToRay(Input.touches[0].position);
 
             RaycastHit hit;
 
-            if(Physics.Raycast(ray,out hit))
+            if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.CompareTag("m_body"))
+                if (hit.collider.CompareTag("male"))
                 {
-                    oS.SkinActivate();
+                    oS.maleOrganSelector = 1;
+                    target = oS.maleOrgans[1].transform;
+
                 }
             }
         }
+        else if(Input.touchCount == 1 && Input.GetTouch(0).tapCount == 3)
+        {
+            oS.maleOrganSelector = 0;
+            target = GameObject.Find("male_body").transform;
+        }
     }
 }
+      
