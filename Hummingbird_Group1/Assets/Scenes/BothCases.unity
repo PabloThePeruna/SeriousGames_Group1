@@ -519,8 +519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 524519989}
   target: {fileID: 277736950}
-  zoomOutMin: 1
-  zoomOutMax: 8
+  zoomOutMin: 0.1
+  zoomOutMax: 2
   slowDownTime: 0.005
 --- !u!4 &781135146
 Transform:
