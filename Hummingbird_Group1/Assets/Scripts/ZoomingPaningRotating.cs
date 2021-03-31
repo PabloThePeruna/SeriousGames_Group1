@@ -10,6 +10,8 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private float zoomOutMin = 0.1f; //max zoom in value
     [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
+    public bool IsTransparentBody = false;
+    public bool IsOrganErlargened = false;
     private OrganSelect oS;
 
 
@@ -22,6 +24,9 @@ public class ZoomingPaningRotating : MonoBehaviour
     private void Start()
     {
         oS = FindObjectOfType<OrganSelect>();
+
+
+        
     }
 
 
@@ -37,9 +42,9 @@ public class ZoomingPaningRotating : MonoBehaviour
         ZoomCalculations();
 
         Body();
-
+        
         EnlargenOrgan();
-
+        
 
 
 
@@ -113,8 +118,8 @@ public class ZoomingPaningRotating : MonoBehaviour
 
     void Body()
     {
-
-        if (Input.touchCount==1 && Input.GetTouch(0).tapCount==2)
+        //Change the body to transparent and highlight specific organ
+        if (Input.touchCount==1 && Input.GetTouch(0).tapCount== 2)
         {
             Ray ray = cam.ScreenPointToRay(Input.touches[0].position);
 
@@ -125,45 +130,56 @@ public class ZoomingPaningRotating : MonoBehaviour
                 if (hit.collider.CompareTag("male"))
                 {
                     oS.maleOrganSelector = 1;
-                    target = oS.maleOrgans[1].transform;
+                    //target = oS.maleOrgans[1].transform;
                     oS.maleOrgans[1].tag = "selected";
+
 
                 }
             }
+
         }
-        else if(Input.touchCount == 1 && Input.GetTouch(0).tapCount == 3)
+
+
+
+        //Get back to full body-perspective
+        else if (Input.touchCount == 1 && Input.GetTouch(0).tapCount == 4)
         {
             oS.maleOrganSelector = 0;
-           
 
             foreach (GameObject organs in oS.maleOrgans)
             {
-                if(organs.tag== "unselected")
+                if (organs.tag == "unselected")
                 {
                     organs.SetActive(true);
                 }
-                
+
             }
             target = GameObject.Find("male_body").transform;
+            cam.orthographicSize = 1;
         }
-    }
 
+    }
+    
     void EnlargenOrgan()
     {
-        if (oS.maleOrganSelector == 1 && Input.touchCount == 1 && Input.GetTouch(0).tapCount == 2 ) 
+        
+        if (oS.maleOrganSelector == 1 && Input.touchCount == 1 && Input.GetTouch(0).tapCount == 3) 
         {
             foreach(GameObject organs in oS.maleOrgans)
             {
                 if (organs.tag == "unselected")
                 {
                     organs.SetActive(false);
+                    IsOrganErlargened = true;
                 }
             }
 
-            cam.orthographicSize = 1;
+            target = oS.maleOrgans[1].transform;
+            cam.orthographicSize = 0.1f;
 
 
         }
     }
+    
 }
       
