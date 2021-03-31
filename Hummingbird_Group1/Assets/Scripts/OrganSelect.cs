@@ -18,10 +18,13 @@ public class OrganSelect : MonoBehaviour
     public Material normalSkinMaterial;
     public Material alwaysVisible;
 
+    private ZoomingPaningRotating zPR;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        zPR = FindObjectOfType<ZoomingPaningRotating>();
 
 
         //maleOrganSelector = Mathf.Clamp(0, 0, 4);
@@ -86,11 +89,15 @@ public class OrganSelect : MonoBehaviour
             maleOrgans[4].GetComponent<MeshRenderer>().material = normalSkinMaterial;
         }
 
+        if (zPR.IsOrganErlargened == true)
+        {
+            maleOrgans[1].GetComponent<MeshRenderer>().material = normalSkinMaterial;
+
+        }
 
     }
 
  
-      
        
     
 
