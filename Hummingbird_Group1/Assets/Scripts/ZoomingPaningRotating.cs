@@ -144,13 +144,15 @@ public class ZoomingPaningRotating : MonoBehaviour
         //Get back to full body-perspective
         else if (Input.touchCount == 1 && Input.GetTouch(0).tapCount == 4)
         {
-            oS.maleOrganSelector = 0;
+            oS.maleOrganSelector = 1;
 
             foreach (GameObject organs in oS.maleOrgans)
             {
                 if (organs.tag == "unselected")
                 {
                     organs.SetActive(true);
+                    IsOrganErlargened = false;
+
                 }
 
             }

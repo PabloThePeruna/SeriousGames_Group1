@@ -7,7 +7,8 @@ public class OrganSelect : MonoBehaviour
     public List<GameObject> maleOrgans = new List<GameObject>();
 
     private GameObject selectedOrgan;
-    public GameObject groins;
+
+
 
     [Range(0, 4)]
     public int maleOrganSelector;
@@ -27,8 +28,6 @@ public class OrganSelect : MonoBehaviour
         zPR = FindObjectOfType<ZoomingPaningRotating>();
 
 
-        //maleOrganSelector = Mathf.Clamp(0, 0, 4);
-
     }
 
     // Update is called once per frame
@@ -38,16 +37,14 @@ public class OrganSelect : MonoBehaviour
         //When other organ than skin is selected, make body transparent
         scrollOrgans(maleOrganSelector);
 
-        //When other organ than skin is selected, make body transparent
+        
         if (maleOrganSelector > 0)
         {
             maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
-            groins.SetActive(false);
         }
         else
         {
-            maleOrgans[0].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-            groins.SetActive(true);
+            maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
         }
         //If brains is selected
         if (maleOrganSelector == 1)
@@ -88,10 +85,17 @@ public class OrganSelect : MonoBehaviour
         {
             maleOrgans[4].GetComponent<MeshRenderer>().material = normalSkinMaterial;
         }
-
+        
+        //Show different material in enlargened organ
         if (zPR.IsOrganErlargened == true)
         {
             maleOrgans[1].GetComponent<MeshRenderer>().material = normalSkinMaterial;
+
+        }
+        else
+        {
+            //Otherwise show alwaysVisible
+            maleOrgans[1].GetComponent<MeshRenderer>().material = alwaysVisible;
 
         }
 
