@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class OrganSelect : MonoBehaviour
 {
-    public List<GameObject> maleOrgans = new List<GameObject>();
+    public List<GameObject> organsList = new List<GameObject>();
 
     private GameObject selectedOrgan;
 
 
 
-    [Range(0, 4)]
-    public int maleOrganSelector;
+    [Range(1, 4)]
+    public int organSelector;
+
+    public int hummingBirdOrganNumber;
+
 
     //public int maleOrganSelector = Mathf.Clamp(0, 0, 4);
 
@@ -27,6 +30,7 @@ public class OrganSelect : MonoBehaviour
     {
         zPR = FindObjectOfType<ZoomingPaningRotating>();
 
+        organSelector = hummingBirdOrganNumber;
 
     }
 
@@ -35,67 +39,20 @@ public class OrganSelect : MonoBehaviour
     {
 
         //When other organ than skin is selected, make body transparent
-        scrollOrgans(maleOrganSelector);
 
-        
-        if (maleOrganSelector > 0)
-        {
-            maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
-        }
-        else
-        {
-            maleOrgans[0].GetComponent<MeshRenderer>().material = transpMaterial;
-        }
-        //If brains is selected
-        if (maleOrganSelector == 1)
-        {
-            maleOrgans[1].GetComponent<MeshRenderer>().material = alwaysVisible;
-        }
-        else
-        {
-            maleOrgans[1].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-        }
+        //scrollOrgans(organSelector); //Also the function is commented. Is this necessary, works without this
 
-        //If heart is selected
-        if (maleOrganSelector == 2)
-        {
-            maleOrgans[2].GetComponent<MeshRenderer>().material = alwaysVisible;
-        }
-        else
-        {
-            maleOrgans[2].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-        }
 
-        //If liver is selected
-        if (maleOrganSelector == 3)
-        {
-            maleOrgans[3].GetComponent<MeshRenderer>().material = alwaysVisible;
-        }
-        else
-        {
-            maleOrgans[3].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-        }
-
-        //If lungs is selected
-        if (maleOrganSelector == 4)
-        {
-            maleOrgans[4].GetComponent<MeshRenderer>().material = alwaysVisible;
-        }
-        else
-        {
-            maleOrgans[4].GetComponent<MeshRenderer>().material = normalSkinMaterial;
-        }
-        
         //Show different material in enlargened organ
         if (zPR.IsOrganErlargened == true)
         {
-            maleOrgans[1].GetComponent<MeshRenderer>().material = normalSkinMaterial;
+            organsList[hummingBirdOrganNumber].GetComponent<MeshRenderer>().material = normalSkinMaterial;
 
         }
-        else
+        else if (zPR.IsOrganErlargened != true)
         {
             //Otherwise show alwaysVisible
-            maleOrgans[1].GetComponent<MeshRenderer>().material = alwaysVisible;
+            organsList[hummingBirdOrganNumber].GetComponent<MeshRenderer>().material = alwaysVisible;
 
         }
 
@@ -103,12 +60,12 @@ public class OrganSelect : MonoBehaviour
 
  
        
-    
-
+    //Works fine without this, is it still necessary?
+    /*
     void scrollOrgans(int organNumber)
     {
-        maleOrganSelector = organNumber;
-        Debug.Log(maleOrgans[organNumber]);
+        organSelector = organNumber;
+        Debug.Log(organsList[organNumber]);
     }
-
+    */
 }

@@ -7,7 +7,7 @@ public class ZoomingPaningRotating : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
-    [SerializeField] private float zoomOutMin = 0.1f; //max zoom in value
+    [SerializeField] private float zoomOutMin = 0.05f; //max zoom in value
     [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
     public bool IsTransparentBody = false;
@@ -23,6 +23,7 @@ public class ZoomingPaningRotating : MonoBehaviour
 
     private void Start()
     {
+
         oS = FindObjectOfType<OrganSelect>();
     }
 
@@ -39,7 +40,12 @@ public class ZoomingPaningRotating : MonoBehaviour
         ZoomCalculations();
 
         Body();
-        
+
+        if (IsOrganErlargened != true)
+        {
+
+        }
+
     }
     void Rotation()
     {
@@ -120,15 +126,14 @@ public class ZoomingPaningRotating : MonoBehaviour
             {
                 if (hit.collider.CompareTag("male"))
                 {
-                    oS.maleOrganSelector = 1;
-                    oS.maleOrgans[1].tag = "selected";
+                    oS.organsList[oS.hummingBirdOrganNumber].tag = "selected";
 
 
                 }
 
 
             }
-            foreach (GameObject organs in oS.maleOrgans)
+            foreach (GameObject organs in oS.organsList)
             {
                 if (organs.tag == "unselected")
                 {
@@ -137,7 +142,7 @@ public class ZoomingPaningRotating : MonoBehaviour
                 }
             }
 
-            target = oS.maleOrgans[1].transform;
+            target = oS.organsList[oS.hummingBirdOrganNumber].transform;
             cam.orthographicSize = 0.1f;
 
         }
@@ -147,20 +152,32 @@ public class ZoomingPaningRotating : MonoBehaviour
         //Get back to full body-perspective
 
 
-        oS.maleOrganSelector = 1;
+        oS.organSelector = oS.hummingBirdOrganNumber;
 
-        foreach (GameObject organs in oS.maleOrgans)
+        foreach (GameObject organs in oS.organsList)
         {
             if (organs.tag == "unselected")
             {
                 organs.SetActive(true);
                 IsOrganErlargened = false;
 
-            }
 
+            }
         }
+
+        //Set camera back to original position after return to full body view
         target = GameObject.Find("male_body").transform;
         cam.orthographicSize = 1;
-     }
+
+        dir = prevPos - cam.ScreenToViewportPoint(Input.mousePosition); //calculate the difference between the old and new finger position
+        cam.transform.position = target.position; // make sure that camera rotates around the targets origin
+
+        cam.transform.Rotate(new Vector3(1, 0, 0) * dir.y * 180); //calculate the amount of rotation applied
+        cam.transform.Rotate(new Vector3(0, 1, 0) * -dir.x * 180, Space.World);
+        cam.transform.Translate(new Vector3(0, 0, -10)); //offset camera
+
+    }
+
+
 }
       
