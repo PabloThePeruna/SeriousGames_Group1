@@ -24,9 +24,6 @@ public class ZoomingPaningRotating : MonoBehaviour
     private void Start()
     {
         oS = FindObjectOfType<OrganSelect>();
-
-
-        
     }
 
 
@@ -43,12 +40,6 @@ public class ZoomingPaningRotating : MonoBehaviour
 
         Body();
         
-        EnlargenOrgan();
-        
-
-
-
-
     }
     void Rotation()
     {
@@ -130,44 +121,14 @@ public class ZoomingPaningRotating : MonoBehaviour
                 if (hit.collider.CompareTag("male"))
                 {
                     oS.maleOrganSelector = 1;
-                    //target = oS.maleOrgans[1].transform;
                     oS.maleOrgans[1].tag = "selected";
 
 
                 }
+
+
             }
-
-        }
-
-
-
-        //Get back to full body-perspective
-        else if (Input.touchCount == 1 && Input.GetTouch(0).tapCount == 4)
-        {
-            oS.maleOrganSelector = 1;
-
             foreach (GameObject organs in oS.maleOrgans)
-            {
-                if (organs.tag == "unselected")
-                {
-                    organs.SetActive(true);
-                    IsOrganErlargened = false;
-
-                }
-
-            }
-            target = GameObject.Find("male_body").transform;
-            cam.orthographicSize = 1;
-        }
-
-    }
-    
-    void EnlargenOrgan()
-    {
-        
-        if (oS.maleOrganSelector == 1 && Input.touchCount == 1 && Input.GetTouch(0).tapCount == 3) 
-        {
-            foreach(GameObject organs in oS.maleOrgans)
             {
                 if (organs.tag == "unselected")
                 {
@@ -179,9 +140,27 @@ public class ZoomingPaningRotating : MonoBehaviour
             target = oS.maleOrgans[1].transform;
             cam.orthographicSize = 0.1f;
 
-
         }
     }
-    
+     public void BackToFullBody()
+     {
+        //Get back to full body-perspective
+
+
+        oS.maleOrganSelector = 1;
+
+        foreach (GameObject organs in oS.maleOrgans)
+        {
+            if (organs.tag == "unselected")
+            {
+                organs.SetActive(true);
+                IsOrganErlargened = false;
+
+            }
+
+        }
+        target = GameObject.Find("male_body").transform;
+        cam.orthographicSize = 1;
+     }
 }
       
