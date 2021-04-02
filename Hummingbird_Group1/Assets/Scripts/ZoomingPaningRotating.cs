@@ -143,7 +143,7 @@ public class ZoomingPaningRotating : MonoBehaviour
             }
 
             target = oS.organsList[oS.hummingBirdOrganNumber].transform;
-            cam.orthographicSize = 0.1f;
+            cam.orthographicSize = 0.2f;
 
         }
     }

@@ -10,6 +10,8 @@ public class OrganSelect : MonoBehaviour
 
 
 
+
+
     [Range(1, 4)]
     public int organSelector;
 
@@ -18,9 +20,14 @@ public class OrganSelect : MonoBehaviour
 
     //public int maleOrganSelector = Mathf.Clamp(0, 0, 4);
 
+    //Materials
     public Material transpMaterial;
     public Material normalSkinMaterial;
-    public Material alwaysVisible;
+
+
+    //Shaders
+    public Shader showAlwaysShader;
+    public Shader standardShader;
 
     private ZoomingPaningRotating zPR;
 
@@ -30,8 +37,8 @@ public class OrganSelect : MonoBehaviour
     {
         zPR = FindObjectOfType<ZoomingPaningRotating>();
 
-        organSelector = hummingBirdOrganNumber;
 
+        organSelector = hummingBirdOrganNumber;
     }
 
     // Update is called once per frame
@@ -46,13 +53,16 @@ public class OrganSelect : MonoBehaviour
         //Show different material in enlargened organ
         if (zPR.IsOrganErlargened == true)
         {
-            organsList[hummingBirdOrganNumber].GetComponent<MeshRenderer>().material = normalSkinMaterial;
+            //When organ is enlargened
+            //Set standard shader of the game object
+            organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = standardShader;
+
 
         }
         else if (zPR.IsOrganErlargened != true)
         {
-            //Otherwise show alwaysVisible
-            organsList[hummingBirdOrganNumber].GetComponent<MeshRenderer>().material = alwaysVisible;
+            //In full body view show set see through -shader
+            organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = showAlwaysShader;
 
         }
 
