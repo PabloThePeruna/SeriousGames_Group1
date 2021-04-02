@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "186798127500",
+    "firebase_url": "https://icarus-firebase-rdb-default-rtdb.firebaseio.com",
+    "project_id": "icarus-firebase-rdb",
+    "storage_bucket": "icarus-firebase-rdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186798127500:android:ab4795e1e5edbbb476bea9",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.Hummingbird_Group1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186798127500-hq9qbjvs66p37vhm17ll2l6ofr76jgmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASlqjq_W8NGg_I_fuKqRTkBCQFR3hOBV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186798127500-hq9qbjvs66p37vhm17ll2l6ofr76jgmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186798127500:android:a273d6ac8ace861176bea9",
+        "android_client_info": {
+          "package_name": "com.example.icarusdb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "186798127500-hq9qbjvs66p37vhm17ll2l6ofr76jgmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASlqjq_W8NGg_I_fuKqRTkBCQFR3hOBV0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "186798127500-hq9qbjvs66p37vhm17ll2l6ofr76jgmo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
