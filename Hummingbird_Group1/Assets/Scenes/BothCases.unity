@@ -544,13 +544,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ef8e9a2d0afa44e9d340c219aa2788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  organsList:
+  maleOrgans:
   - {fileID: 3548577746874518114}
   - {fileID: 7178085354641037720}
-  - {fileID: 2352758887819458150}
-  - {fileID: 4258394407135558811}
-  - {fileID: 1104907980808758133}
   - {fileID: 2963014422460534113}
+  - {fileID: 2352758887819458150}
   - {fileID: 9112704739844409916}
   - {fileID: 7520855410186173725}
   - {fileID: 814307289704907307}
@@ -561,20 +559,20 @@ MonoBehaviour:
   - {fileID: 866518291587947135}
   - {fileID: 2021762525850910712}
   - {fileID: 1335789691595869693}
+  - {fileID: 4258394407135558811}
+  - {fileID: 1104907980808758133}
   - {fileID: 4114784701150608572}
   - {fileID: 8466643469589184820}
   - {fileID: 6303843538749753846}
   - {fileID: 3265644408765119659}
   - {fileID: 5749518738906700707}
+  - {fileID: 6601839100362391190}
   - {fileID: 2545052566835803119}
-  - {fileID: 1060548758875467583}
   - {fileID: 1060548758875467583}
   - {fileID: 5878061846098809306}
   - {fileID: 867584472734500955}
   - {fileID: 7517960557884384037}
-  - {fileID: 6601839100362391190}
-  organSelector: 1
-  hummingBirdOrganNumber: 2
+  maleOrganSelector: 0
   transpMaterial: {fileID: 2100000, guid: fc7b10bb6a6c063409089d275bed190d, type: 2}
   normalSkinMaterial: {fileID: 2100000, guid: 1156f4a836363e241b3ee57e95dcf907, type: 2}
   alwaysVisible: {fileID: 2100000, guid: a553ebbb67e20cd46ab1076dbe6d6a2f, type: 2}
