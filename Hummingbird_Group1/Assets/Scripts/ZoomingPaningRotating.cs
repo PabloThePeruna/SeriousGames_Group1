@@ -137,6 +137,9 @@ public class ZoomingPaningRotating : MonoBehaviour
             {
                 if (organs.tag == "unselected")
                 {
+                    organs.GetComponent<Renderer>().enabled = false;
+
+
                     organs.SetActive(false);
                     IsOrganErlargened = true;
                 }
@@ -158,6 +161,9 @@ public class ZoomingPaningRotating : MonoBehaviour
         {
             if (organs.tag == "unselected")
             {
+                organs.GetComponent<Renderer>().enabled = true;
+
+
                 organs.SetActive(true);
                 IsOrganErlargened = false;
 

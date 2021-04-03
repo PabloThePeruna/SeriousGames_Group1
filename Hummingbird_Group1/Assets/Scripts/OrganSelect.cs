@@ -11,7 +11,6 @@ public class OrganSelect : MonoBehaviour
 
 
 
-
     [Range(1, 4)]
     public int organSelector;
 
@@ -36,7 +35,7 @@ public class OrganSelect : MonoBehaviour
     void Start()
     {
         zPR = FindObjectOfType<ZoomingPaningRotating>();
-
+        
 
         organSelector = hummingBirdOrganNumber;
     }
