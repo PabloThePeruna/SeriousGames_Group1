@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BothCases.unity
     guid: 6ca5ff6756e4442498e3841c67f66826
+  - enabled: 1
+    path: Assets/Scenes/Case.unity
+    guid: e14ed84222ef31241a40021e9f726430
+  - enabled: 1
+    path: Assets/Scenes/Feedback.unity
+    guid: a79bcae81fd5b894596e6d0181cbb273
   m_configObjects: {}
