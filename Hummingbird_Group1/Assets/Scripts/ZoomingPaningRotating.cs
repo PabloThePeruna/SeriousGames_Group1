@@ -25,6 +25,11 @@ public class ZoomingPaningRotating : MonoBehaviour
     {
 
         oS = FindObjectOfType<OrganSelect>();
+
+        //Set halo on around selected gameobject
+        //oS.organsList[oS.hummingBirdOrganNumber].transform.GetChild(0).gameObject.SetActive(true);
+
+
     }
 
 
@@ -139,7 +144,6 @@ public class ZoomingPaningRotating : MonoBehaviour
                 {
                     organs.GetComponent<Renderer>().enabled = false;
 
-
                     organs.SetActive(false);
                     IsOrganErlargened = true;
                 }
@@ -163,6 +167,7 @@ public class ZoomingPaningRotating : MonoBehaviour
             {
                 organs.GetComponent<Renderer>().enabled = true;
 
+                oS.outlineSize = 1.15f;
 
                 organs.SetActive(true);
                 IsOrganErlargened = false;
