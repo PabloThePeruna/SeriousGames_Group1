@@ -3178,7 +3178,7 @@ GameObject:
   - component: {fileID: 219600723}
   m_Layer: 0
   m_Name: new_heart
-  m_TagString: Untagged
+  m_TagString: unselected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3214,7 +3214,7 @@ GameObject:
   - component: {fileID: 1874345027}
   m_Layer: 0
   m_Name: new_lungs
-  m_TagString: Untagged
+  m_TagString: unselected
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
