@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 258429640}
   m_Layer: 5
   m_Name: HomeScreen
-  m_TagString: Untagged
+  m_TagString: home
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1243,7 +1243,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540655773
 GameObject:
@@ -1289,7 +1289,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &540655776
 MonoBehaviour:
@@ -1714,7 +1714,7 @@ GameObject:
   - component: {fileID: 896162710}
   m_Layer: 5
   m_Name: MultiplayerRoomScreen
-  m_TagString: Untagged
+  m_TagString: canvas2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2232,7 +2232,7 @@ RectTransform:
   - {fileID: 896162710}
   - {fileID: 1517667431}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2770,7 +2770,7 @@ GameObject:
   - component: {fileID: 1517667431}
   m_Layer: 5
   m_Name: MultiplayerJoinScreen
-  m_TagString: Untagged
+  m_TagString: multip_join
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3730,7 +3730,7 @@ GameObject:
   - component: {fileID: 1663793167}
   m_Layer: 5
   m_Name: MultiplayerStartScreen
-  m_TagString: Untagged
+  m_TagString: multip_start
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4178,6 +4178,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849014976}
   m_CullTransparentMesh: 0
+--- !u!1 &2007512280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2007512282}
+  - component: {fileID: 2007512281}
+  m_Layer: 0
+  m_Name: CaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2007512281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007512280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4955d0778af8a448c37878d2297907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas2: {fileID: 896162709}
+  SeeMoreDetails2: {fileID: 0}
+  home: {fileID: 258429639}
+  multip_start: {fileID: 1663793166}
+  multip_room: {fileID: 896162709}
+--- !u!4 &2007512282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007512280}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 304.8223, y: 211.02614, z: -342.09976}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2014765374
 GameObject:
   m_ObjectHideFlags: 0

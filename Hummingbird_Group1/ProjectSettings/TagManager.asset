@@ -17,6 +17,12 @@ TagManager:
   - male
   - selected
   - unselected
+  - Bullet
+  - canvas2
+  - multip_room
+  - multip_start
+  - multip_join
+  - home
   layers:
   - Default
   - TransparentFX

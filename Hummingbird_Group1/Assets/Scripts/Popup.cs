@@ -9,21 +9,29 @@ using System;
 
 public class Popup : MonoBehaviour
 {
-    public Button _button1;
-
-
+    public Button button1;
     public GameObject popup;
 
+    void Start()
+    {
+        PlayerPrefs.SetInt("NoteHasBeenShowed", 0);
+        button1.onClick.AddListener(DontShownAgain);
+    }
 
     void Update()
     {
-      _button1.onClick.AddListener(() =>
-        {
-            GameObject.Destroy(this.gameObject);
-        });
+        //if(PlayerPrefs.SetInt("NoteHasBeenShowed", 0))
+       
             
     }
 
-    
+    public void DontShownAgain()
+    {
+       popup.SetActive(false);
+       PlayerPrefs.SetInt("NoteHasBeenShowed", 1);
+       PlayerPrefs.Save();
+       Debug.Log("Note feature has been shown");
+    }
 }
+
 
