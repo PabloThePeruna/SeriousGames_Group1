@@ -8,12 +8,22 @@ using System;
 public class User
 {
     public string userName;
-    public int userScore;
+    public string patientRR;
+    public string patientBP;
+    public string patientO2Sat;
+    public string patientHR;
+    public string patientSympDesc;
+    public string patientPatDesc;
 
     public User()
     {
         userName = PlayerScores.playerName;
-        userScore = PlayerScores.playerScore;
+        patientRR = PlayerScores.rR;
+        patientBP = PlayerScores.bP;
+        patientO2Sat = PlayerScores.o2Sat;
+        patientHR = PlayerScores.hR;
+        patientSympDesc = PlayerScores.sympDesc;
+        patientPatDesc = PlayerScores.patDesc;
     }
 
 

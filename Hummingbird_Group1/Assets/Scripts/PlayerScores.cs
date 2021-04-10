@@ -7,28 +7,43 @@ using UnityEngine.UI;
 public class PlayerScores : MonoBehaviour
 {
 
-    public Text scoreText;
     public InputField nameText;
+    
+    public InputField respirationRate;
+    public InputField bloodPressure;
+    public InputField o2Saturation;
+    public InputField heartRate;
+    public InputField symptomDesc;
+    public InputField patientDesc;
 
     User user = new User();
 
-    public static int playerScore;
     public static string playerName;
+    public static string rR;
+    public static string bP;
+    public static string o2Sat;
+    public static string hR;
+    public static string sympDesc;
+    public static string patDesc;
 
-    private System.Random random = new System.Random();
 
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScore = random.Next(0, 101);
-        scoreText.text = "Score " + playerScore;
+        
     }
 
 
     public void OnSubmit()
     {
         playerName = nameText.text;
+        rR = respirationRate.text;
+        bP = bloodPressure.text;
+        o2Sat = o2Saturation.text;
+        hR = heartRate.text;
+        sympDesc = symptomDesc.text;
+        patDesc = patientDesc.text;
         PostToDatabase();
     }
 
@@ -37,10 +52,6 @@ public class PlayerScores : MonoBehaviour
         RetrieveFromDatabase();
     }
 
-    private void UpdateScore()
-    {
-        scoreText.text = "Score " + user.userScore;
-    }
 
     private void PostToDatabase()
     {
@@ -53,7 +64,6 @@ public class PlayerScores : MonoBehaviour
         RestClient.Get<User>("https://icarus-firebase-rdb-default-rtdb.firebaseio.com/" + nameText.text + ".json").Then ( response =>
         {
             user = response;
-            UpdateScore();
         });
     }
 }
