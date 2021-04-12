@@ -15,6 +15,8 @@ public class PlayerScores : MonoBehaviour
     public InputField heartRate;
     public InputField symptomDesc;
     public InputField patientDesc;
+    public InputField labResults;
+    public InputField medication;
 
     User user = new User();
 
@@ -25,6 +27,9 @@ public class PlayerScores : MonoBehaviour
     public static string hR;
     public static string sympDesc;
     public static string patDesc;
+    public static int patientNumber;
+    public static string labRes;
+    public static string meds;
 
 
 
@@ -44,6 +49,9 @@ public class PlayerScores : MonoBehaviour
         hR = heartRate.text;
         sympDesc = symptomDesc.text;
         patDesc = patientDesc.text;
+        labRes = labResults.text;
+        meds = medication.text;
+        patientNumber += 1;
         PostToDatabase();
     }
 
