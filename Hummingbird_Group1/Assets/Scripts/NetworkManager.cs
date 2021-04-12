@@ -78,7 +78,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public override void OnPlayerLeftRoom(Player otherPlayer)
+    public void OnPlayerLeftRoom(Player otherPlayer)
     {
         canvasPhotonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
