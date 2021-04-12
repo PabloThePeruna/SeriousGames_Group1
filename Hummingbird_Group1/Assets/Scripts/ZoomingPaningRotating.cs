@@ -10,6 +10,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private float zoomOutMin = 0.05f; //max zoom in value
     [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
     bool IsZooming = false;
+    public bool CanDoubleCliclk = false;
     public bool IsTransparentBody = false;
     public bool IsOrganErlargened = false;
     private OrganSelect oS;
@@ -44,12 +45,13 @@ public class ZoomingPaningRotating : MonoBehaviour
 
         ZoomCalculations();
 
+        HighDetail();
+
         Body();
 
-        if (IsOrganErlargened != true)
-        {
+       
 
-        }
+       
 
     }
     void Rotation()
@@ -129,29 +131,32 @@ public class ZoomingPaningRotating : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
+                
                 if (hit.collider.CompareTag("male"))
                 {
+
                     oS.organsList[oS.hummingBirdOrganNumber].tag = "selected";
 
+                    foreach (GameObject organs in oS.organsList)
+                    {
+                        if (organs.tag == "unselected")
+                        {
+                            organs.GetComponent<Renderer>().enabled = false;
 
+                            organs.SetActive(false);
+                            IsOrganErlargened = true;
+                            CanDoubleCliclk = true;
+                        }
+                    }
+
+                    target = oS.organsList[oS.hummingBirdOrganNumber].transform;
+                    cam.orthographicSize = 0.2f;
                 }
 
-
+                
             }
-            foreach (GameObject organs in oS.organsList)
-            {
-                if (organs.tag == "unselected")
-                {
-                    organs.GetComponent<Renderer>().enabled = false;
-
-                    organs.SetActive(false);
-                    IsOrganErlargened = true;
-                }
-            }
-
-            target = oS.organsList[oS.hummingBirdOrganNumber].transform;
-            cam.orthographicSize = 0.2f;
-
+           
+            
         }
     }
      public void BackToFullBody()
@@ -171,6 +176,8 @@ public class ZoomingPaningRotating : MonoBehaviour
 
                 organs.SetActive(true);
                 IsOrganErlargened = false;
+                CanDoubleCliclk = false;
+                oS.organsList[oS.hummingBirdOrganNumber].SetActive(true);
 
 
             }
@@ -187,6 +194,21 @@ public class ZoomingPaningRotating : MonoBehaviour
         cam.transform.Rotate(new Vector3(0, 1, 0) * -dir.x * 180, Space.World);
         cam.transform.Translate(new Vector3(0, 0, -10)); //offset camera
 
+    }
+
+    void HighDetail()
+    {
+        
+        if (IsOrganErlargened == true && CanDoubleCliclk== true)
+        {
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase== TouchPhase.Began && Input.GetTouch(0).tapCount == 2)
+            {
+                oS.organsList[oS.hummingBirdOrganNumber].SetActive(false);
+
+            }
+        }
+        
+       
     }
 
 
