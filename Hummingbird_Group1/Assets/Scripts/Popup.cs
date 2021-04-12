@@ -12,23 +12,31 @@ public class Popup : MonoBehaviour
     public Button button1;
     public GameObject popup;
 
+    const string Note = "NoteHasbeenShowed";
+    public static bool isShowed;
+
     void Start()
     {
-        PlayerPrefs.SetInt("NoteHasBeenShowed", 0);
+        isShowed = PlayerPrefs.GetInt(Note, 0) != 0;
         button1.onClick.AddListener(DontShownAgain);
     }
 
     void Update()
     {
-        //if(PlayerPrefs.SetInt("NoteHasBeenShowed", 0))
-       
+        if (isShowed)
+        {
+            popup.SetActive(false);
+        }
+   
+
             
     }
 
     public void DontShownAgain()
     {
        popup.SetActive(false);
-       PlayerPrefs.SetInt("NoteHasBeenShowed", 1);
+       isShowed = true;
+       PlayerPrefs.SetInt(Note, 1);
        PlayerPrefs.Save();
        Debug.Log("Note feature has been shown");
     }
