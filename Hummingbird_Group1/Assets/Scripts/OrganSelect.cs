@@ -45,9 +45,10 @@ public class OrganSelect : MonoBehaviour
     void Update()
     {
 
+
         outlineSize = organsList[hummingBirdOrganNumber].GetComponent<Renderer>().sharedMaterial.GetFloat("_OutlineWidth");
 
-        Debug.Log("Outlinesize = " + outlineSize);
+        //Debug.Log("Outlinesize = " + outlineSize);
         //When other organ than skin is selected, make body transparent
 
         //scrollOrgans(organSelector); //Also the function is commented. Is this necessary, works without this

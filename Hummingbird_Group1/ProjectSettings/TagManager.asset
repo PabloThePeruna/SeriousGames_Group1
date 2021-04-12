@@ -23,6 +23,7 @@ TagManager:
   - multip_start
   - multip_join
   - home
+  - ChooseButton
   layers:
   - Default
   - TransparentFX
