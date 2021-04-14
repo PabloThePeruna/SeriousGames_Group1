@@ -8,7 +8,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private Transform target;
     [SerializeField] private float zoomOutMin = 0.05f; //max zoom in value
-    [SerializeField] private float zoomOutMax = 1f; //Max zoom out value
+    [SerializeField] private float zoomOutMax = 2f; //Max zoom out value
     bool IsZooming = false;
     public bool CanDoubleCliclk = false;
     public bool IsTransparentBody = false;
@@ -24,8 +24,10 @@ public class ZoomingPaningRotating : MonoBehaviour
 
     private void Start()
     {
+        //Camera view in split screen
 
         oS = FindObjectOfType<OrganSelect>();
+
 
         //Set halo on around selected gameobject
         //oS.organsList[oS.hummingBirdOrganNumber].transform.GetChild(0).gameObject.SetActive(true);
@@ -56,14 +58,14 @@ public class ZoomingPaningRotating : MonoBehaviour
     }
     void Rotation()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && cam.pixelRect.Contains(Input.mousePosition))
         {
 
             prevPos = cam.ScreenToViewportPoint(Input.mousePosition);
 
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && cam.pixelRect.Contains(Input.mousePosition))
         {
             dir = prevPos - cam.ScreenToViewportPoint(Input.mousePosition); //calculate the difference between the old and new finger position
             cam.transform.position = target.position; // make sure that camera rotates around the targets origin
@@ -85,7 +87,7 @@ public class ZoomingPaningRotating : MonoBehaviour
 
     void ZoomCalculations()
     {
-        if (Input.touchCount == 2) //Check if two fingers are on screen
+        if (Input.touchCount == 2 && cam.pixelRect.Contains(Input.mousePosition)) //Check if two fingers are on screen
         {
             IsZooming = true;
             Touch touchFirst = Input.GetTouch(0); //store touch
@@ -109,7 +111,7 @@ public class ZoomingPaningRotating : MonoBehaviour
         }
 
         //if we have only one finger curently active we can sart to rotate
-        else if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        else if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && cam.pixelRect.Contains(Input.mousePosition))
         {
             IsZooming = false;
 
@@ -123,7 +125,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     void Body()
     {
         //Change the body to transparent and highlight specific organ
-        if (Input.touchCount==1 && Input.GetTouch(0).tapCount== 2)
+        if (Input.touchCount==1 && Input.GetTouch(0).tapCount== 2 && cam.pixelRect.Contains(Input.mousePosition))
         {
             Ray ray = cam.ScreenPointToRay(Input.touches[0].position);
 

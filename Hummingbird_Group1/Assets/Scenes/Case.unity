@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3447,7 +3447,7 @@ GameObject:
   - component: {fileID: 1407892237}
   - component: {fileID: 1407892236}
   m_Layer: 5
-  m_Name: Case1info
+  m_Name: Case1infoLarge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5626,6 +5626,7 @@ MonoBehaviour:
   target: {fileID: 2063450854}
   zoomOutMin: 0.05
   zoomOutMax: 2
+  CanDoubleCliclk: 0
   IsTransparentBody: 0
   IsOrganErlargened: 0
   slowDownTime: 0.005

@@ -16,6 +16,9 @@ public class Timer : MonoBehaviour
     public Button choosePatientOneButton;
     public Button choosePatientTwoButton;
 
+    public Button choosePatientOneMoreDetailsButton;
+    public Button choosePatientTwoMoreDetailsButton;
+
 
 
     // Start is called before the first frame update
@@ -27,7 +30,8 @@ public class Timer : MonoBehaviour
         //Listens when buttons are pressed
         choosePatientOneButton.onClick.AddListener(ChoosePatientOneClick);
         choosePatientTwoButton.onClick.AddListener(ChoosePatientTwoClick);
-
+        choosePatientOneMoreDetailsButton.onClick.AddListener(ChoosePatientOneClick);
+        choosePatientTwoMoreDetailsButton.onClick.AddListener(ChoosePatientTwoClick);
     }
 
     // Update is called once per frame
