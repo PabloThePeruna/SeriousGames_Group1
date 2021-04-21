@@ -26,12 +26,18 @@ public class CaseGenerator : MonoBehaviour
         patientNumber++;
         patientCase = new Case(nameText.text, respirationRate.text, bloodPressure.text, o2Saturation.text,
             heartRate.text, symptomDesc.text, patientDesc.text, labResults.text, medication.text, patientNumber);
-        Database.PostCaseToDatabase(patientCase, PostSucceeded);
+        Database.PostCaseToDatabase(patientCase, PostResult);
     }
 
-    void PostSucceeded()
+    void PostResult(bool succeeded)
     {
-        Debug.Log("CALLBACK SUCCESS");
+        if (succeeded)
+        {
+            Debug.Log("Case posted successfully.");
+        } else
+        {
+            Debug.LogWarning("Case could not be posted.");
+        }
     }
 
     public void OnGetScore()

@@ -14,9 +14,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public Case patientCase1;
     public Case patientCase2;
 
-    private string nicknameKey = "Nickname";
+    public int difficulty;
 
-    [SerializeField] private PhotonView canvasPhotonView;
+    public Player localPlayer;
+
+    [SerializeField] private MainMenu mainMenu;
 
     private void Awake()
     {
@@ -29,21 +31,33 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
-    public void SetNickName(string nickname)
+    [PunRPC]
+    public void SetDifficulty(int difficulty)
+    {
+        this.difficulty = difficulty;
+        mainMenu.UpdateRoomUI();
+    }
+
+    public void SetPlayer(Player player)
+    {
+        localPlayer = player;
+        if (player == null)
+        {
+            SetNickName();
+        }
+        else
+        {
+            SetNickName(player.nickname);
+        }
+    }
+
+    public void SetNickName(string nickname = "")
     {
         if (nickname == "")
         {
-            if (PlayerPrefs.HasKey(nicknameKey))
-            {
-                nickname = PlayerPrefs.GetString(nicknameKey);
-            }
-            else
-            {
-                nickname = "Player " + Random.Range(1000, 10000);
-            }
+            nickname = "Player " + Random.Range(1000, 10000);
         }
 
-        PlayerPrefs.SetString(nicknameKey, nickname);
         PhotonNetwork.NickName = nickname;
     }
 
@@ -59,11 +73,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected to master server.");
     }
 
-    public void SetRoomCode(string roomCode)
-    {
-        this.roomCode = roomCode;
-    }
-
     // creates a new room and this player automatically joins the created room
     public void CreateRoom()
     {
@@ -76,8 +85,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(roomCode, options);
     }
 
-    public void JoinRoom()
+    public void JoinRoom(string roomCode)
     {
+        this.roomCode = roomCode;
         PhotonNetwork.JoinRoom(roomCode);
     }
 
@@ -86,16 +96,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.LeaveRoom();
     }
 
-    [PunRPC]
-    public void OnPlayerLeftRoom(Player otherPlayer)
+    public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        canvasPhotonView.RPC("UpdateRoomUI", RpcTarget.All);
+        mainMenu.photonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
 
-    [PunRPC]
     public override void OnJoinedRoom()
     {
-        canvasPhotonView.RPC("UpdateRoomUI", RpcTarget.All);
+        mainMenu.photonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -121,7 +129,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarning("Disconnected from PUN2 servers.");
-        PhotonNetwork.LoadLevel(0);
+        PhotonNetwork.Reconnect();
     }
 
     public void LoadLevel(int scene)
