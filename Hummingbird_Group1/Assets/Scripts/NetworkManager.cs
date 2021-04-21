@@ -11,6 +11,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private int emptyRoomTtl = 60000; // in milliseconds, 1 min
     private int maxPlayersPerRoom = 2;
     public string roomCode;
+    public Case patientCase1;
+    public Case patientCase2;
 
     private string nicknameKey = "Nickname";
 
@@ -43,6 +45,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         PlayerPrefs.SetString(nicknameKey, nickname);
         PhotonNetwork.NickName = nickname;
+    }
+
+    [PunRPC]
+    public void UpdateCases(Case case1, Case case2)
+    {
+        patientCase1 = case1;
+        patientCase2 = case2;
     }
 
     public override void OnConnectedToMaster()

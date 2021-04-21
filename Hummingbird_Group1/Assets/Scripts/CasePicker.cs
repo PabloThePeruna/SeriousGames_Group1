@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Proyecto26;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class CasePicker : MonoBehaviour
+public class CasePicker : MonoBehaviourPunCallbacks
 {
 
     public Text patientnumber1;
@@ -29,7 +30,8 @@ public class CasePicker : MonoBehaviour
     public Text medication2;
     public Text patientSympDesc2;
 
-    Case patientCase;
+    Case patientCase1;
+    Case patientCase2;
 
     public void OnSelectEasy()  //Called when "Easy" Button is pressed.
     {
@@ -65,32 +67,40 @@ public class CasePicker : MonoBehaviour
 
     void RetrieveCase1Succeeded(Case response)  
     {
-        patientCase = response;
-        patientnumber1.text = patientCase.patNum.ToString();  //This line displays the patient number when the Database has finished giving us the patient's information.
-        patientName1.text = patientCase.patientName;
-        respirationRate1.text = patientCase.patientRR;
-        heartRate1.text = patientCase.patientHR;
-        bloodPressure1.text = patientCase.patientBP;
-        o2Saturation1.text = patientCase.patientO2Sat;
-        description1.text = patientCase.patientPatDesc;
-        labResults1.text = patientCase.lab;
-        medication1.text = patientCase.medsTaken;
-        patientSympDesc1.text = patientCase.patientSympDesc;
+        patientCase1 = response;
+        patientnumber1.text = patientCase1.patNum.ToString();  //This line displays the patient number when the Database has finished giving us the patient's information.
+        patientName1.text = patientCase1.patientName;
+        respirationRate1.text = patientCase1.patientRR;
+        heartRate1.text = patientCase1.patientHR;
+        bloodPressure1.text = patientCase1.patientBP;
+        o2Saturation1.text = patientCase1.patientO2Sat;
+        description1.text = patientCase1.patientPatDesc;
+        labResults1.text = patientCase1.lab;
+        medication1.text = patientCase1.medsTaken;
+        patientSympDesc1.text = patientCase1.patientSympDesc;
+        if (patientCase2 != null)
+        {
+            NetworkManager.instance.photonView.RPC("UpdateCases", RpcTarget.All, patientCase1, patientCase2);
+        }
     }
 
     void RetrieveCase2Succeeded(Case response)
     {
-        patientCase = response;
-        patientnumber2.text = patientCase.patNum.ToString();  //This line displays the patient number when the Database has finished giving us the patient's information.
-        patientName2.text = patientCase.patientName;
-        respirationRate2.text = patientCase.patientRR;
-        heartRate2.text = patientCase.patientHR;
-        bloodPressure2.text = patientCase.patientBP;
-        o2Saturation2.text = patientCase.patientO2Sat;
-        description2.text = patientCase.patientPatDesc;
-        labResults2.text = patientCase.lab;
-        medication2.text = patientCase.medsTaken;
-        patientSympDesc2.text = patientCase.patientSympDesc;
+        patientCase2 = response;
+        patientnumber2.text = patientCase2.patNum.ToString();  //This line displays the patient number when the Database has finished giving us the patient's information.
+        patientName2.text = patientCase2.patientName;
+        respirationRate2.text = patientCase2.patientRR;
+        heartRate2.text = patientCase2.patientHR;
+        bloodPressure2.text = patientCase2.patientBP;
+        o2Saturation2.text = patientCase2.patientO2Sat;
+        description2.text = patientCase2.patientPatDesc;
+        labResults2.text = patientCase2.lab;
+        medication2.text = patientCase2.medsTaken;
+        patientSympDesc2.text = patientCase2.patientSympDesc;
+        if (patientCase1 != null)
+        {
+            NetworkManager.instance.photonView.RPC("UpdateCases", RpcTarget.All, patientCase1, patientCase2);
+        }
     }
 }
 
