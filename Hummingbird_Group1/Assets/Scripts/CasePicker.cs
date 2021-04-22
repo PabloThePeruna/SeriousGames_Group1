@@ -30,8 +30,8 @@ public class CasePicker : MonoBehaviourPunCallbacks
     public Text medication2;
     public Text patientSympDesc2;
 
-    Case patientCase1;
-    Case patientCase2;
+    public Case patientCase1 = null;
+    public Case patientCase2 = null;
 
     public void OnSelectEasy()  //Called when "Easy" Button is pressed.
     {
@@ -47,6 +47,20 @@ public class CasePicker : MonoBehaviourPunCallbacks
     {
         PatientOne("James");
         PatientTwo("Creed");
+    }
+
+    public void NormalMode()
+    {
+        int choice = Random.Range(0, 100) % 2;
+        PatientOne("Jeanette");
+        if (choice == 0)
+        {
+            PatientTwo("Creed");
+        }
+        else //if (choice == 1)
+        {
+            PatientTwo("Carla");
+        }
     }
 
     public void HardMode()
@@ -78,10 +92,6 @@ public class CasePicker : MonoBehaviourPunCallbacks
         labResults1.text = patientCase1.lab;
         medication1.text = patientCase1.medsTaken;
         patientSympDesc1.text = patientCase1.patientSympDesc;
-        if (patientCase2 != null)
-        {
-            NetworkManager.instance.photonView.RPC("UpdateCases", RpcTarget.All, patientCase1, patientCase2);
-        }
     }
 
     void RetrieveCase2Succeeded(Case response)
@@ -97,10 +107,6 @@ public class CasePicker : MonoBehaviourPunCallbacks
         labResults2.text = patientCase2.lab;
         medication2.text = patientCase2.medsTaken;
         patientSympDesc2.text = patientCase2.patientSympDesc;
-        if (patientCase1 != null)
-        {
-            NetworkManager.instance.photonView.RPC("UpdateCases", RpcTarget.All, patientCase1, patientCase2);
-        }
     }
 }
 

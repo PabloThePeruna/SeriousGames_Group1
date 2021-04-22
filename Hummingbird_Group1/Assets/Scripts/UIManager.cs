@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,60 @@ public class UIManager : MonoBehaviour
 
     private Rect hideCam = new Rect(0, 0, 0, 0);
 
+    [Header("Case 1: More Details")]
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsName;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsGender;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsAge;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsSymptoms;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsWeight;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsHeight;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsHR;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsBP;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsRR;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsTemp;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsOxygen;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsMedicine;
+    //[SerializeField] private TextMeshProUGUI patient1MoreDetailsLab;
+
+    [Header("Case 1: Less Details")]
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsName;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsGender;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsAge;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsSymptoms;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsHR;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsBP;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsRR;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsOxygen;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsTemp;
+    [SerializeField] private TextMeshProUGUI patient1LessDetailsLab;
+
+    [Header("Case 2: More Details")]
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsName;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsGender;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsAge;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsSymptoms;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsWeight;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsHeight;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsHR;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsBP;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsRR;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsTemp;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsOxygen;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsMedicine;
+    //[SerializeField] private TextMeshProUGUI patient2MoreDetailsLab;
+
+    [Header("Case 2: Less Details")]
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsName;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsGender;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsAge;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsSymptoms;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsHR;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsBP;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsRR;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsOxygen;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsTemp;
+    [SerializeField] private TextMeshProUGUI patient2LessDetailsLab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,12 +111,70 @@ public class UIManager : MonoBehaviour
         SwapCasesButt1.onClick.AddListener(SwapCases1);
         SwapCasesButt2.onClick.AddListener(SwapCases2);
 
+        StartCoroutine(PopulateCaseDetails());
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator PopulateCaseDetails()
     {
+        while (NetworkManager.instance.patientCase1.patientName == "")
+        {
+            yield return null;
+        }
+
+        patient1MoreDetailsName.text = NetworkManager.instance.patientCase1.patientName;
+        patient1MoreDetailsGender.text = NetworkManager.instance.patientCase1.gender;
+        patient1MoreDetailsAge.text = NetworkManager.instance.patientCase1.age;
+        patient1MoreDetailsSymptoms.text = NetworkManager.instance.patientCase1.patientSympDesc;
+        patient1MoreDetailsWeight.text = NetworkManager.instance.patientCase1.weight;
+        patient1MoreDetailsHeight.text = NetworkManager.instance.patientCase1.height;
+        patient1MoreDetailsHR.text = NetworkManager.instance.patientCase1.patientHR;
+        patient1MoreDetailsBP.text = NetworkManager.instance.patientCase1.patientBP;
+        patient1MoreDetailsRR.text = NetworkManager.instance.patientCase1.patientRR;
+        patient1MoreDetailsTemp.text = NetworkManager.instance.patientCase1.temperature;
+        patient1MoreDetailsOxygen.text = NetworkManager.instance.patientCase1.patientO2Sat;
+        patient1MoreDetailsMedicine.text = NetworkManager.instance.patientCase1.medsTaken;
+        //patient1MoreDetailsLab.text = NetworkManager.instance.patientCase1;
+
+        patient1LessDetailsName.text = NetworkManager.instance.patientCase1.patientName;
+        patient1LessDetailsGender.text = NetworkManager.instance.patientCase1.gender;
+        patient1LessDetailsAge.text = NetworkManager.instance.patientCase1.age;
+        patient1LessDetailsSymptoms.text = NetworkManager.instance.patientCase1.patientSympDesc;
+        patient1LessDetailsHR.text = NetworkManager.instance.patientCase1.patientHR;
+        patient1LessDetailsBP.text = NetworkManager.instance.patientCase1.patientBP;
+        patient1LessDetailsRR.text = NetworkManager.instance.patientCase1.patientRR;
+        patient1LessDetailsOxygen.text = NetworkManager.instance.patientCase1.patientO2Sat;
+        patient1LessDetailsTemp.text = NetworkManager.instance.patientCase1.temperature;
+        patient1LessDetailsLab.text = NetworkManager.instance.patientCase1.lab;
         
+        while (NetworkManager.instance.patientCase2.patientName == "")
+        {
+            yield return null;
+        }
+
+        patient2MoreDetailsName.text = NetworkManager.instance.patientCase2.patientName;
+        patient2MoreDetailsGender.text = NetworkManager.instance.patientCase2.gender;
+        patient2MoreDetailsAge.text = NetworkManager.instance.patientCase2.age;
+        patient2MoreDetailsSymptoms.text = NetworkManager.instance.patientCase2.patientSympDesc;
+        patient2MoreDetailsWeight.text = NetworkManager.instance.patientCase2.weight;
+        patient2MoreDetailsHeight.text = NetworkManager.instance.patientCase2.height;
+        patient2MoreDetailsHR.text = NetworkManager.instance.patientCase2.patientHR;
+        patient2MoreDetailsBP.text = NetworkManager.instance.patientCase2.patientBP;
+        patient2MoreDetailsRR.text = NetworkManager.instance.patientCase2.patientRR;
+        patient2MoreDetailsTemp.text = NetworkManager.instance.patientCase2.temperature;
+        patient2MoreDetailsOxygen.text = NetworkManager.instance.patientCase2.patientO2Sat;
+        patient2MoreDetailsMedicine.text = NetworkManager.instance.patientCase2.medsTaken;
+        //patient2MoreDetailsLab.text = NetworkManager.instance.patientCase2;
+
+        patient2LessDetailsName.text = NetworkManager.instance.patientCase2.patientName;
+        patient2LessDetailsGender.text = NetworkManager.instance.patientCase2.gender;
+        patient2LessDetailsAge.text = NetworkManager.instance.patientCase2.age;
+        patient2LessDetailsSymptoms.text = NetworkManager.instance.patientCase2.patientSympDesc;
+        patient2LessDetailsHR.text = NetworkManager.instance.patientCase2.patientHR;
+        patient2LessDetailsBP.text = NetworkManager.instance.patientCase2.patientBP;
+        patient2LessDetailsRR.text = NetworkManager.instance.patientCase2.patientRR;
+        patient2LessDetailsOxygen.text = NetworkManager.instance.patientCase2.patientO2Sat;
+        patient2LessDetailsTemp.text = NetworkManager.instance.patientCase2.temperature;
+        patient2LessDetailsLab.text = NetworkManager.instance.patientCase2.lab;
     }
 
     void MoreDetailsClick1()

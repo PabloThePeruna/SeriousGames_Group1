@@ -29,15 +29,15 @@ public static class Database
     }
     public static void PostPlayerToDatabase(Player player, PostPlayerCallback callback)
     {
-        RestClient.Put<Player>(databaseURL + player.email + ".json", player).Then(response =>
+        RestClient.Put<Player>(databaseURL + player.userID + ".json", player).Then(response =>
         {
             callback(true);
         }, response => { callback(false); });
     }
 
-    public static void RetrievePlayerFromDatabase(string email, RetrievePlayerCallback callback)
+    public static void RetrievePlayerFromDatabase(string userID, RetrievePlayerCallback callback)
     {
-        RestClient.Get<Player>(databaseURL + email + ".json").Then(response =>
+        RestClient.Get<Player>(databaseURL + userID + ".json").Then(response =>
         {
             callback(response);
         }, response => { callback(null); });

@@ -8,27 +8,40 @@ using TMPro;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
+    private bool isInitialized = false;
     private int emptyRoomTtl = 60000; // in milliseconds, 1 min
     private int maxPlayersPerRoom = 2;
     public string roomCode;
     public Case patientCase1;
     public Case patientCase2;
 
-    public int difficulty;
+    public int difficulty = 0;
 
     public Player localPlayer;
 
     [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private CasePicker casePicker;
+    [SerializeField] private UIManager caseUIManager;
 
     private void Awake()
     {
-        instance = this;
+        if (!isInitialized)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings(); // connect to master server
         PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+    public void LogOut()
+    {
+        PhotonNetwork.Disconnect();
+        Destroy(gameObject);
     }
 
     [PunRPC]
@@ -61,11 +74,55 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nickname;
     }
 
-    [PunRPC]
-    public void UpdateCases(Case case1, Case case2)
+    public void ChooseCases()
     {
-        patientCase1 = case1;
-        patientCase2 = case2;
+        if (PhotonNetwork.IsMasterClient && casePicker != null)
+        {
+            string patientName1 = "";
+            string patientName2 = "";
+            if (difficulty == 0)
+            {
+                patientName1 = "James";
+                patientName2 = "Creed";
+            }
+            else if (difficulty == 1)
+            {
+                int choice = Random.Range(0, 100) % 2;
+                patientName1 = "Jeanette";
+                if (choice == 0)
+                {
+                    patientName2 = "Creed";
+                }
+                else //if (choice == 1)
+                {
+                    patientName2 = "Carla";
+                }
+            }
+            else if (difficulty == 2)
+            {
+                patientName1 = "Jeanette";
+                patientName2 = "Carla";
+            }
+
+            photonView.RPC("UpdateCases", RpcTarget.All, patientName1, patientName2);
+        }
+    }
+
+    [PunRPC]
+    public void UpdateCases(string name1, string name2)
+    {
+        Database.RetrieveCaseFromDatabase(name1, SetCase1);
+        Database.RetrieveCaseFromDatabase(name2, SetCase2);
+    }
+
+    public void SetCase1(Case response)
+    {
+        patientCase1 = response;
+    }
+
+    public void SetCase2(Case response)
+    {
+        patientCase2 = response;
     }
 
     public override void OnConnectedToMaster()
@@ -129,11 +186,29 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarning("Disconnected from PUN2 servers.");
-        PhotonNetwork.Reconnect();
+        if (cause != DisconnectCause.DisconnectByClientLogic)
+        {
+            PhotonNetwork.Reconnect();
+        }
     }
 
     public void LoadLevel(int scene)
     {
         PhotonNetwork.LoadLevel(scene);
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        GameObject go = GameObject.Find("SceneManager");
+        if (go != null)
+        {
+            go.TryGetComponent<UIManager>(out caseUIManager);
+        }
+
+        go = GameObject.Find("Canvas");
+        if (go != null)
+        {
+            go.TryGetComponent<MainMenu>(out mainMenu);
+        }
     }
 }

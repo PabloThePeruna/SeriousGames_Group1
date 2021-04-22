@@ -17,6 +17,11 @@ public class Case
     public string lab;
     public string medsTaken;
     public int patNum;
+    public string gender = "";
+    public string age = "";
+    public string height = "";
+    public string weight = "";
+    public string temperature = "";
 
     public Case(string patientName, string patientRR, string patientBP, string patientO2Sat, 
         string patientHR, string patientSympDesc, string patientPatDesc, string lab, string medsTaken,

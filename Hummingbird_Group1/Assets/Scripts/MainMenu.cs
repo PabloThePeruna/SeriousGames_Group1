@@ -7,32 +7,33 @@ using TMPro;
 
 public class MainMenu : MonoBehaviourPun
 {
-    public GameObject loginScreen;
-    public GameObject homeScreen;
-    public GameObject generalSection;
-    public GameObject createOrJoinSection;
-    public GameObject findRoomSection;
-    public GameObject waitingRoomSection;
+    public GameObject loginScreen; // screen where user enters login information
+    public GameObject homeScreen; // screen containing general and multiplayer sections
+    public GameObject generalSection; // static sections of the home screen
+    public GameObject createOrJoinSection; // area with buttons to create or join a room
+    public GameObject findRoomSection; // area where player enters room code to find room
+    public GameObject waitingRoomSection; // area showing room information
 
     [Header("Login Screen")]
-    public TMP_InputField emailInput;
-    public TMP_InputField passwordInput;
+    public TMP_InputField emailInput; // email input field
+    public TMP_InputField passwordInput; // password input field
 
     [Header("Home Screen")]
-    public TextMeshProUGUI nicknameText;
-    public TextMeshProUGUI roomCodeText;
-    public TextMeshProUGUI playerListText;
-    public GameObject ownRoom;
-    public GameObject foundRoom;
-    public GameObject easyButton;
-    public GameObject medButton;
-    public GameObject hardButton;
-    public TextMeshProUGUI diffculityLabel;
+    public TextMeshProUGUI nicknameText; // display player nickname
+    public TextMeshProUGUI roomCodeText; // display room code
+    public TextMeshProUGUI playerListText; // display list of players
+    public GameObject ownRoom; // button groups for room if this is the master client
+    public GameObject foundRoom; // buttons groups for room if this is not the master client
+    public GameObject easyButton; // button to set difficulty to easy
+    public GameObject medButton; // button to set difficulty to medium
+    public GameObject hardButton; // button to set difficulty to hard
+    public TextMeshProUGUI diffculityLabel; // show non-master client the chosen difficulty
 
+    private string userID;
 
     private void Start()
     {
-        // Database.PostPlayerToDatabase(new Player("testlogin", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
+        // Database.PostPlayerToDatabase(new Player("testlogin", "test@login.com", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
         SetScreen(loginScreen);
     }
 
@@ -44,23 +45,23 @@ public class MainMenu : MonoBehaviourPun
     public void SetScreen(GameObject screen, bool isRoomOwner = false)
     {
         loginScreen.SetActive(false);
-        homeScreen.SetActive(false);
-        generalSection.SetActive(true);
-
-        createOrJoinSection.SetActive(false);
-        findRoomSection.SetActive(false);
-        waitingRoomSection.SetActive(false);
 
         if (screen == createOrJoinSection || screen == findRoomSection || screen == waitingRoomSection)
         {
             homeScreen.SetActive(true);
             generalSection.SetActive(true);
-
-            createOrJoinSection.SetActive(false);
-            findRoomSection.SetActive(false);
-            waitingRoomSection.SetActive(false);
+        }
+        else
+        {
+            homeScreen.SetActive(false);
+            generalSection.SetActive(false);
         }
 
+        createOrJoinSection.SetActive(false);
+        findRoomSection.SetActive(false);
+        waitingRoomSection.SetActive(false);
+
+        // Set the screen active, and make sure it is active in the hierarchy by setting all parents active
         screen.SetActive(true);
         GameObject parent = screen;
         while (!screen.activeInHierarchy)
@@ -93,6 +94,7 @@ public class MainMenu : MonoBehaviourPun
     public void PlayGame()
     {
         Debug.Log("Start Game!");
+        NetworkManager.instance.ChooseCases();
         NetworkManager.instance.LoadLevel(1);
     }
 
@@ -124,9 +126,25 @@ public class MainMenu : MonoBehaviourPun
         NetworkManager.instance.JoinRoom(roomCodeInput.text);
     }
 
+    public void LogOut()
+    {
+        NetworkManager.instance.LogOut();
+        SceneManager.LoadScene(0);
+    }
+
     public void Login()
     {
-        Database.RetrievePlayerFromDatabase(emailInput.text, LoginCallback);
+        userID = emailInput.text;
+        userID = userID.ToLower();
+        for (int i = 0; i < userID.Length; i++)
+        {
+            if ((userID[i] < 'a' || userID[i] > 'z' ) && (userID[i] < '0' || userID[i] > '9'))
+            {
+                userID = userID.Remove(i,1);
+                i--;
+            }
+        }
+        Database.RetrievePlayerFromDatabase(userID, LoginCallback);
     }
 
     public void LoginCallback(Player player)
@@ -145,7 +163,7 @@ public class MainMenu : MonoBehaviourPun
 
     public void CreateNewPlayer()
     {
-        Player p = new Player(emailInput.text, emailInput.text, 0, 0, new List<bool>(), -1, new List<int>());
+        Player p = new Player(userID, emailInput.text, emailInput.text, 0, 0, new List<bool>(), new List<int>());
         NetworkManager.instance.SetPlayer(p);
         Database.PostPlayerToDatabase(p, (bool succeeded) =>
         {
