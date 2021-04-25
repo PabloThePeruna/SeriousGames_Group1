@@ -35,11 +35,11 @@ public class BarGraph : MonoBehaviour
         List<int> values = new List<int>() { 7, 76, 9, 50, 10, 70, 65, 76, 42, 90,54,15,76,24,23, 48, 22, 78, 90, 87 };
 
         List<int> avg = new List<int>();
-        //avg.Add(values[0]);
+       
 
         graphHeight = graphContaner.sizeDelta.y;
         avgLine.anchorMin = new Vector2(0, 0);
-        //avgLine.pivot = new Vector2(0, 0f);
+       
 
 
         yMax = 110f;
@@ -59,24 +59,9 @@ public class BarGraph : MonoBehaviour
         Debug.Log("AverageLineLinePosY " + averageLinePosY);
 
 
-        //avgLine.transform.localPosition = new Vector2(0, averageLinePosY);
+       
         avgLine.transform.localPosition = new Vector2(0, averageLinePosY -(graphContaner.sizeDelta.y/2));
-        //avgLine.sizeDelta = new Vector2(avgLine.sizeDelta.x,  averageLinePosY);
-
-        /*
-        for (int i = 0; i < avg.Count; i++)
-        {
-            //float temp = ;
-
-            float frac = 1f / (i + 1);
-            avg.Add((int)(i * frac * avg[i - 1] + frac * values[i]));
-            Debug.Log("frac " + frac);
-            Debug.Log("Lista avg " + avg[i]);
-
-        }
-
-        //Debug.Log("Avg lista " + avg);
-        */
+       
 
 
         ShowGraph(values,(int _i)=> ""+(_i+1),(float _f) => Mathf.RoundToInt(_f)+ "s" );
@@ -93,8 +78,7 @@ public class BarGraph : MonoBehaviour
             getAxisLabelX = delegate (int _i) { return _i.ToString(); };
             getAxisLabelY = delegate (float _f) { return Mathf.RoundToInt(_f).ToString(); };
         }
-        //graphHeight = graphContaner.sizeDelta.y;
-        //yMax = 110f;
+       
         float graphWidth = graphContaner.sizeDelta.x;
         float xSize = graphWidth/ values.Count;
        
@@ -102,14 +86,13 @@ public class BarGraph : MonoBehaviour
 
         for (int i = 0; i < values.Count; i++)
         {
-            //float frac = 1f / (i + 1);
-           // avg.Add((int)(i * frac * avg[i - 1] + frac * values[i]));
+          
             float xPos = .5f *xSize+ i * xSize;
             float yPos = (values[i] / yMax) * graphHeight;
             float avgXPos = xSize + i * xSize;
-            //float avgYPos = (avg[i] / yMax) * graphHeight;
+           
             CreateBar(new Vector2(xPos, yPos), xSize*.9f);
-            //CreateAverage(new Vector2(avgXPos, avgYPos), 3f, Color.cyan);
+            
             Debug.Log("yPos " + yPos);
 
             RectTransform labelXDublicated = Instantiate(labelX);
@@ -155,19 +138,6 @@ public class BarGraph : MonoBehaviour
         return gameObject;
     }
 
-    private GameObject CreateAverage(Vector2 graphPosition, float lineWidth, Color color)
-    {
-        GameObject gameObject = new GameObject("bar", typeof(Image));
-        gameObject.transform.SetParent(graphContaner, false);
-        gameObject.GetComponent<Image>().color = color;
-        RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = new Vector2(graphPosition.x, graphContaner.sizeDelta.y*.5f);
-        rectTransform.sizeDelta = new Vector2(lineWidth, graphPosition.y);
-        rectTransform.anchorMin = new Vector2(0, 0);
-        rectTransform.anchorMax = new Vector2(0, 0);
-        rectTransform.pivot = new Vector2(.5f, 0f);
-
-        return gameObject;
-    }
+   
 
 }
