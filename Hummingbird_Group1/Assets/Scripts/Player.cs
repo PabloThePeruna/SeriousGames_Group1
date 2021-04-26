@@ -23,29 +23,7 @@ public class Player
         this.winHistory = winHistory;
         this.decisionTimeHistory = decisionTimeHistory;
 
-    reduce:
-        while (numGamesPlayed < winHistory.Count)
-        {
-            this.winHistory.RemoveAt(winHistory.Count - 1);
-        }
-
-        while (numGamesPlayed < decisionTimeHistory.Count)
-        {
-            this.decisionTimeHistory.RemoveAt(decisionTimeHistory.Count - 1);
-        }
-
-
-        if (winHistory.Count > numGamesPlayed)
-        {
-            this.numGamesPlayed = winHistory.Count;
-            goto reduce;
-        }
-
-        if (winHistory.Count > numGamesPlayed)
-        {
-            this.numGamesPlayed = winHistory.Count;
-            goto reduce;
-        }
+  
     }
 
     /*
