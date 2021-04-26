@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public SceneController sceneController;
     //Panels
 
     public GameObject moreDetailPanel1;
@@ -121,60 +122,64 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        patient1MoreDetailsName.text = NetworkManager.instance.patientCase1.patientName;
-        patient1MoreDetailsGender.text = NetworkManager.instance.patientCase1.gender;
-        patient1MoreDetailsAge.text = NetworkManager.instance.patientCase1.age;
-        patient1MoreDetailsSymptoms.text = NetworkManager.instance.patientCase1.patientSympDesc;
-        patient1MoreDetailsWeight.text = NetworkManager.instance.patientCase1.weight;
-        patient1MoreDetailsHeight.text = NetworkManager.instance.patientCase1.height;
-        patient1MoreDetailsHR.text = NetworkManager.instance.patientCase1.patientHR;
-        patient1MoreDetailsBP.text = NetworkManager.instance.patientCase1.patientBP;
-        patient1MoreDetailsRR.text = NetworkManager.instance.patientCase1.patientRR;
-        patient1MoreDetailsTemp.text = NetworkManager.instance.patientCase1.temperature;
-        patient1MoreDetailsOxygen.text = NetworkManager.instance.patientCase1.patientO2Sat;
-        patient1MoreDetailsMedicine.text = NetworkManager.instance.patientCase1.medsTaken;
-        //patient1MoreDetailsLab.text = NetworkManager.instance.patientCase1;
+        Case case1 = NetworkManager.instance.patientCase1;
 
-        patient1LessDetailsName.text = NetworkManager.instance.patientCase1.patientName;
-        patient1LessDetailsGender.text = NetworkManager.instance.patientCase1.gender;
-        patient1LessDetailsAge.text = NetworkManager.instance.patientCase1.age;
-        patient1LessDetailsSymptoms.text = NetworkManager.instance.patientCase1.patientSympDesc;
-        patient1LessDetailsHR.text = NetworkManager.instance.patientCase1.patientHR;
-        patient1LessDetailsBP.text = NetworkManager.instance.patientCase1.patientBP;
-        patient1LessDetailsRR.text = NetworkManager.instance.patientCase1.patientRR;
-        patient1LessDetailsOxygen.text = NetworkManager.instance.patientCase1.patientO2Sat;
-        patient1LessDetailsTemp.text = NetworkManager.instance.patientCase1.temperature;
-        patient1LessDetailsLab.text = NetworkManager.instance.patientCase1.lab;
+        patient1MoreDetailsName.text = case1.patientName;
+        patient1MoreDetailsGender.text = case1.gender;
+        patient1MoreDetailsAge.text = case1.age;
+        patient1MoreDetailsSymptoms.text = case1.patientSympDesc;
+        patient1MoreDetailsWeight.text = case1.weight;
+        patient1MoreDetailsHeight.text = case1.height;
+        patient1MoreDetailsHR.text = case1.patientHR;
+        patient1MoreDetailsBP.text = case1.patientBP;
+        patient1MoreDetailsRR.text = case1.patientRR;
+        patient1MoreDetailsTemp.text = case1.temperature;
+        patient1MoreDetailsOxygen.text = case1.patientO2Sat;
+        patient1MoreDetailsMedicine.text = case1.medsTaken;
+        //patient1MoreDetailsLab.text = case1;
+
+        patient1LessDetailsName.text = case1.patientName;
+        patient1LessDetailsGender.text = case1.gender;
+        patient1LessDetailsAge.text = case1.age;
+        patient1LessDetailsSymptoms.text = case1.patientSympDesc;
+        patient1LessDetailsHR.text = case1.patientHR;
+        patient1LessDetailsBP.text = case1.patientBP;
+        patient1LessDetailsRR.text = case1.patientRR;
+        patient1LessDetailsOxygen.text = case1.patientO2Sat;
+        patient1LessDetailsTemp.text = case1.temperature;
+        patient1LessDetailsLab.text = case1.lab;
         
         while (NetworkManager.instance.patientCase2.patientName == "")
         {
             yield return null;
         }
 
-        patient2MoreDetailsName.text = NetworkManager.instance.patientCase2.patientName;
-        patient2MoreDetailsGender.text = NetworkManager.instance.patientCase2.gender;
-        patient2MoreDetailsAge.text = NetworkManager.instance.patientCase2.age;
-        patient2MoreDetailsSymptoms.text = NetworkManager.instance.patientCase2.patientSympDesc;
-        patient2MoreDetailsWeight.text = NetworkManager.instance.patientCase2.weight;
-        patient2MoreDetailsHeight.text = NetworkManager.instance.patientCase2.height;
-        patient2MoreDetailsHR.text = NetworkManager.instance.patientCase2.patientHR;
-        patient2MoreDetailsBP.text = NetworkManager.instance.patientCase2.patientBP;
-        patient2MoreDetailsRR.text = NetworkManager.instance.patientCase2.patientRR;
-        patient2MoreDetailsTemp.text = NetworkManager.instance.patientCase2.temperature;
-        patient2MoreDetailsOxygen.text = NetworkManager.instance.patientCase2.patientO2Sat;
-        patient2MoreDetailsMedicine.text = NetworkManager.instance.patientCase2.medsTaken;
-        //patient2MoreDetailsLab.text = NetworkManager.instance.patientCase2;
+        Case case2 = NetworkManager.instance.patientCase2;
 
-        patient2LessDetailsName.text = NetworkManager.instance.patientCase2.patientName;
-        patient2LessDetailsGender.text = NetworkManager.instance.patientCase2.gender;
-        patient2LessDetailsAge.text = NetworkManager.instance.patientCase2.age;
-        patient2LessDetailsSymptoms.text = NetworkManager.instance.patientCase2.patientSympDesc;
-        patient2LessDetailsHR.text = NetworkManager.instance.patientCase2.patientHR;
-        patient2LessDetailsBP.text = NetworkManager.instance.patientCase2.patientBP;
-        patient2LessDetailsRR.text = NetworkManager.instance.patientCase2.patientRR;
-        patient2LessDetailsOxygen.text = NetworkManager.instance.patientCase2.patientO2Sat;
-        patient2LessDetailsTemp.text = NetworkManager.instance.patientCase2.temperature;
-        patient2LessDetailsLab.text = NetworkManager.instance.patientCase2.lab;
+        patient2MoreDetailsName.text = case2.patientName;
+        patient2MoreDetailsGender.text = case2.gender;
+        patient2MoreDetailsAge.text = case2.age;
+        patient2MoreDetailsSymptoms.text = case2.patientSympDesc;
+        patient2MoreDetailsWeight.text = case2.weight;
+        patient2MoreDetailsHeight.text = case2.height;
+        patient2MoreDetailsHR.text = case2.patientHR;
+        patient2MoreDetailsBP.text = case2.patientBP;
+        patient2MoreDetailsRR.text = case2.patientRR;
+        patient2MoreDetailsTemp.text = case2.temperature;
+        patient2MoreDetailsOxygen.text = case2.patientO2Sat;
+        patient2MoreDetailsMedicine.text = case2.medsTaken;
+        //patient2MoreDetailsLab.text = case2;
+
+        patient2LessDetailsName.text = case2.patientName;
+        patient2LessDetailsGender.text = case2.gender;
+        patient2LessDetailsAge.text = case2.age;
+        patient2LessDetailsSymptoms.text = case2.patientSympDesc;
+        patient2LessDetailsHR.text = case2.patientHR;
+        patient2LessDetailsBP.text = case2.patientBP;
+        patient2LessDetailsRR.text = case2.patientRR;
+        patient2LessDetailsOxygen.text = case2.patientO2Sat;
+        patient2LessDetailsTemp.text = case2.temperature;
+        patient2LessDetailsLab.text = case2.lab;
     }
 
     void MoreDetailsClick1()
@@ -220,5 +225,50 @@ public class UIManager : MonoBehaviour
     {
 
         MoreDetailsClick1();
+    }
+
+    public void ChoosePatient(int choice)
+    {
+        StartCoroutine(WaitForTimerToEvaluateChoice(choice));
+    }
+
+    IEnumerator WaitForTimerToEvaluateChoice(int choice)
+    { 
+        yield return null;
+        Case case1 = NetworkManager.instance.patientCase1;
+        Case case2 = NetworkManager.instance.patientCase2;
+        bool won = false;
+        if (choice == 1)
+        {
+            if (case1.patNum == 5 || 
+                (case1.patNum == 4 && case2.patNum != 5) ||
+                (case1.patNum == 2 && case2.patNum < 4) ||
+                (case1.patNum == 1 && case2.patNum == 3))
+            {
+                won = true;
+            }
+            else
+            {
+                won = false;
+            }
+        }
+        else if (choice == 2)
+        {
+            if (case2.patNum == 5 ||
+                (case2.patNum == 4 && case1.patNum != 5) ||
+                (case2.patNum == 2 && case1.patNum < 4) ||
+                (case2.patNum == 1 && case1.patNum == 3))
+            {
+                won = true;
+            }
+            else
+            {
+                won = false;
+            }
+        }
+
+        NetworkManager.instance.localPlayer.AddGameResult(won, (int)Timer.chooseTime);
+        NetworkManager.instance.localPlayer.Save();
+        sceneController.LoadScene("Feedback");
     }
 }

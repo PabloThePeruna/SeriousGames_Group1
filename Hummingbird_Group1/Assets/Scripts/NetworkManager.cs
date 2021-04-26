@@ -5,6 +5,10 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 
+/*
+ * This class should handle all multiplayer calls
+ * and holds local player and case data
+ */
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager instance;
@@ -14,10 +18,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public string roomCode;
     public Case patientCase1;
     public Case patientCase2;
+    public bool case1Set = false; // have we received case 1 from the database
+    public bool case2Set = false; // have we received case 2 from the database
 
-    public int difficulty = 0;
+    public int difficulty = 0; // 0 = easy, 1 = normal, 2 = hard
 
-    public Player localPlayer;
+    public Player localPlayer; // player from the database
 
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private CasePicker casePicker;
@@ -25,9 +31,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (!isInitialized)
+        if (!isInitialized) // avoid 2 copies of this
         {
             instance = this;
+            case1Set = false;
+            case2Set = false;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -35,15 +43,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings(); // connect to master server
-        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
+    /*
+     * Called when the player is logging out.
+     * Disconnects from PUN2 server and destroys this
+     * (so it can be reinitialized).
+     */
     public void LogOut()
     {
         PhotonNetwork.Disconnect();
         Destroy(gameObject);
     }
 
+    /*
+     * Set the difficulty for every player in the room.
+     * Update the room UI to show this new difficulty level.
+     */
     [PunRPC]
     public void SetDifficulty(int difficulty)
     {
@@ -51,6 +68,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         mainMenu.UpdateRoomUI();
     }
 
+    /*
+     * Set the localPlayer field and update the player's PUN nickname
+     */
     public void SetPlayer(Player player)
     {
         localPlayer = player;
@@ -64,6 +84,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    /*
+     * Set the player's PUN nickname (which is 
+     * displayed in the room's player list to everyone)
+     */
     public void SetNickName(string nickname = "")
     {
         if (nickname == "")
@@ -74,9 +98,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nickname;
     }
 
+    /*
+     * Based on the difficulty level, decide on the patient 
+     * cases that will be given to the players.
+     * Then tell everyone to retrieve these cases by giving
+     * the patient names
+     */
     public void ChooseCases()
     {
-        if (PhotonNetwork.IsMasterClient && casePicker != null)
+        if (PhotonNetwork.IsMasterClient)
         {
             string patientName1 = "";
             string patientName2 = "";
@@ -108,6 +138,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    /*
+     * Retrieve the cases for this game from the database
+     */
     [PunRPC]
     public void UpdateCases(string name1, string name2)
     {
@@ -115,14 +148,23 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Database.RetrieveCaseFromDatabase(name2, SetCase2);
     }
 
+    /*
+     * Callback for retrieving case 1
+     */
     public void SetCase1(Case response)
     {
+
         patientCase1 = response;
+        case1Set = true;
     }
 
+    /*
+     * Callback for retrieving case 2
+     */
     public void SetCase2(Case response)
     {
         patientCase2 = response;
+        case2Set = true;
     }
 
     public override void OnConnectedToMaster()
@@ -142,27 +184,43 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(roomCode, options);
     }
 
+    /*
+     * Attempt to join the given room. Success will call
+     * OnJoinedRoom and failure will call OnJoinRoomFailed
+     */
     public void JoinRoom(string roomCode)
     {
         this.roomCode = roomCode;
         PhotonNetwork.JoinRoom(roomCode);
     }
 
+    /*
+     * Called when the player wants to leave the room they are in
+     */
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
     }
 
+    /*
+     * When a player has left the room, update the player list
+     */
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
         mainMenu.photonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
 
+    /*
+     * When you join a room, tell everyone to update their player list
+     */
     public override void OnJoinedRoom()
     {
         mainMenu.photonView.RPC("UpdateRoomUI", RpcTarget.All);
     }
 
+    /*
+     * If joining the room fails, try to give a helpful console warning message.
+     */
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
         if (returnCode == 32758 || returnCode == 32764)
@@ -183,6 +241,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    /*
+     * If you disconnect from the PUN2 servers try to 
+     * reconnect if it was not on purpose.
+     */
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarning("Disconnected from PUN2 servers.");
@@ -192,11 +254,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+    /*
+     * Load into the next scene.
+     */
+    [PunRPC]
     public void LoadLevel(int scene)
     {
         PhotonNetwork.LoadLevel(scene);
     }
 
+    /*
+     * When the scene changes, try to find the 
+     * component controlling the UI.
+     */
     private void OnLevelWasLoaded(int level)
     {
         GameObject go = GameObject.Find("SceneManager");
