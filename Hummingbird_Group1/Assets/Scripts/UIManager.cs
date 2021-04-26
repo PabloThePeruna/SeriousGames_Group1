@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+/*
+ * Enum to describe which piece of case information we are referring to
+ */
+public enum CaseData { name, gender, age, weight, height, symptoms, hr, bp, rr, temp, o2, meds, labs }
+
+public class UIManager : MonoBehaviourPun
 {
     public SceneController sceneController;
     //Panels
@@ -270,5 +276,256 @@ public class UIManager : MonoBehaviour
         NetworkManager.instance.localPlayer.AddGameResult(won, (int)Timer.chooseTime);
         NetworkManager.instance.localPlayer.Save();
         sceneController.LoadScene("Feedback");
+    }
+
+    public void SendNote(GameObject infoTextObject)
+    {
+        string message = infoTextObject.transform.GetComponentInChildren<TMP_InputField>().text;
+        if (infoTextObject == patient1MoreDetailsName || infoTextObject == patient1LessDetailsName)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.name, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsGender || infoTextObject == patient1LessDetailsGender)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.gender, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsAge || infoTextObject == patient1LessDetailsAge)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.age, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsSymptoms || infoTextObject == patient1LessDetailsSymptoms)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.symptoms, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsWeight)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.weight, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsHeight)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.height, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsHR || infoTextObject == patient1LessDetailsHR)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.hr, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsBP || infoTextObject == patient1LessDetailsBP)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.bp, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsRR || infoTextObject == patient1LessDetailsRR)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.rr, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsTemp || infoTextObject == patient1LessDetailsTemp)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.temp, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsOxygen || infoTextObject == patient1LessDetailsOxygen)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.o2, message);
+        }
+        else if (infoTextObject == patient1MoreDetailsMedicine)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.meds, message);
+        }
+        else if (infoTextObject == patient1LessDetailsLab) //patient1MoreDetailsLab.text = case1;
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.labs, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsName || infoTextObject == patient2LessDetailsName)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.name, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsGender || infoTextObject == patient2LessDetailsGender)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.gender, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsAge || infoTextObject == patient2LessDetailsAge)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.age, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsSymptoms || infoTextObject == patient2LessDetailsSymptoms)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.symptoms, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsWeight)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.weight, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsHeight)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.height, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsHR || infoTextObject == patient2LessDetailsHR)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.hr, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsBP || infoTextObject == patient2LessDetailsBP)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.bp, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsRR || infoTextObject == patient2LessDetailsRR)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.rr, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsTemp || infoTextObject == patient2LessDetailsTemp)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.temp, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsOxygen || infoTextObject == patient2LessDetailsOxygen)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.o2, message);
+        }
+        else if (infoTextObject == patient2MoreDetailsMedicine)
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.meds, message);
+        }
+        else if (infoTextObject == patient2LessDetailsLab)//patient2MoreDetailsLab.text = case2;
+        {
+            photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.labs, message);
+        }
+    }
+
+    /*
+     * Find the correct note to add a new comment and call UpdateComments() for that note
+     * Nickname is the nickname of the player writing the note
+     * CaseNum is either 1 or 2
+     * Location is a CaseData cast as an int
+     * Message is the note to add
+     */
+    [PunRPC]
+    public void AddNote(string nickname, int caseNum, int location, string message)
+    {
+        if (caseNum == 1)
+        {
+            if (location == (int)CaseData.name)
+            {
+                patient1LessDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.age)
+            {
+                patient1LessDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.gender)
+            {
+                patient1LessDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.weight)
+            {
+                patient1MoreDetailsWeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.height)
+            {
+                patient1MoreDetailsHeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.symptoms)
+            {
+                patient1LessDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.hr)
+            {
+                patient1LessDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.bp)
+            {
+                patient1LessDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.rr)
+            {
+                patient1LessDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.temp)
+            {
+                patient1LessDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.o2)
+            {
+                patient1LessDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient1MoreDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.meds)
+            {
+                patient1MoreDetailsMedicine.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if(location == (int)CaseData.labs)
+            {
+                patient1LessDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                //patient1MoreDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+        }
+        else if (caseNum == 2)
+        {
+            if (location == (int)CaseData.name)
+            {
+                patient2LessDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.age)
+            {
+                patient2LessDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.gender)
+            {
+                patient2LessDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.weight)
+            {
+                patient2MoreDetailsWeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.height)
+            {
+                patient2MoreDetailsHeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.symptoms)
+            {
+                patient2LessDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.hr)
+            {
+                patient2LessDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.bp)
+            {
+                patient2LessDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.rr)
+            {
+                patient2LessDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.temp)
+            {
+                patient2LessDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.o2)
+            {
+                patient2LessDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                patient2MoreDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.meds)
+            {
+                patient2MoreDetailsMedicine.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+            else if (location == (int)CaseData.labs)
+            {
+                patient2LessDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+                //patient2MoreDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
+            }
+        }
     }
 }
