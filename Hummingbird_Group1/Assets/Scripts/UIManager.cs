@@ -124,6 +124,9 @@ public class UIManager : MonoBehaviour
 
         Case case1 = NetworkManager.instance.patientCase1;
 
+        OrganSelect os1 = gameObject.GetComponent<OrganSelect>();
+        os1.hummingBirdOrganNumber = case1.organNum;
+
         patient1MoreDetailsName.text = case1.patientName;
         patient1MoreDetailsGender.text = case1.gender;
         patient1MoreDetailsAge.text = case1.age;
@@ -155,6 +158,9 @@ public class UIManager : MonoBehaviour
         }
 
         Case case2 = NetworkManager.instance.patientCase2;
+
+        OrganSelect2 os2 = gameObject.GetComponent<OrganSelect2>();
+        os2.hummingBirdOrganNumber2 = case2.organNum;
 
         patient2MoreDetailsName.text = case2.patientName;
         patient2MoreDetailsGender.text = case2.gender;

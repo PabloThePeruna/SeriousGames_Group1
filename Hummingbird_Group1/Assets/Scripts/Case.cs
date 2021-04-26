@@ -22,10 +22,11 @@ public class Case
     public string height = "";
     public string weight = "";
     public string temperature = "";
+    public int organNum; // to correspond with the organ select hummingBirdOrganNumber
 
-    public Case(string patientName, string patientRR, string patientBP, string patientO2Sat, 
+    public Case(string patientName, string patientRR, string patientBP, string patientO2Sat,
         string patientHR, string patientSympDesc, string patientPatDesc, string lab, string medsTaken,
-        int patNum)
+        int patNum, int organNum = 0)
     {
         this.patientName = patientName;
         this.patientRR = patientRR;
@@ -37,6 +38,7 @@ public class Case
         this.lab = lab;
         this.medsTaken = medsTaken;
         this.patNum = patNum;
+        this.organNum = organNum;
     }
 
 
