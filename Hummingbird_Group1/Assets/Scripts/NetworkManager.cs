@@ -130,7 +130,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             }
             else if (difficulty == 2)
             {
-                patientName1 = "Jeanette";
+                patientName1 = "Creed";
                 patientName2 = "Carla";
             }
 

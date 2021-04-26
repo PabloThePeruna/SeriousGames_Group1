@@ -108,7 +108,7 @@ public class BarGraph : MonoBehaviour
 
             if (!player.winHistory[i])
             {
-                barColor = new Color32(0x11,0x40,0x4D,0xff);
+                barColor = new Color32(0xD1, 0x4D,0x34,0xFF);
             }
             
 
