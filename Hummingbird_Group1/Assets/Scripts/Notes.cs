@@ -23,6 +23,9 @@ public class Notes : MonoBehaviour
         
     }
 
-
+    public void UpdateComments(string message)
+    {
+        Debug.Log("Writing message!");
+    }
 }
 

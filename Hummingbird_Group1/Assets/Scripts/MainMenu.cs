@@ -203,6 +203,7 @@ public class MainMenu : MonoBehaviourPun
             player = CreateNewPlayer();
         }
         NetworkManager.instance.SetPlayer(player);
+        nicknameText.text = player.nickname;
         SetScreen(homeScreen);
     }
 
