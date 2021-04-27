@@ -144,8 +144,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
                 patientName1 = "Creed";
                 patientName2 = "Carla";
             }
-
-            photonView.RPC("UpdateCases", RpcTarget.All, patientName1, patientName2);
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                photonView.RPC("UpdateCases", RpcTarget.All, patientName1, patientName2);
+            }
+            else if (random == 1)
+            {
+                photonView.RPC("UpdateCases", RpcTarget.All, patientName2, patientName1);
+            }
         }
     }
 
