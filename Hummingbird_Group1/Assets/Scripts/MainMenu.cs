@@ -7,6 +7,7 @@ using TMPro;
 
 public class MainMenu : MonoBehaviourPun
 {
+    public BarGraph barGraph;
     public GameObject loginScreen; // screen where user enters login information
     public GameObject homeScreen; // screen containing general and multiplayer sections
     public GameObject generalSection; // static sections of the home screen
@@ -34,7 +35,15 @@ public class MainMenu : MonoBehaviourPun
     private void Start()
     {
         // Database.PostPlayerToDatabase(new Player("testlogin", "test@login.com", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
-        SetScreen(loginScreen);
+        if (NetworkManager.isLoggedIn)
+        {
+            Database.RetrievePlayerFromDatabase(NetworkManager.localPlayer.userID, LoginCallback);
+            SetScreen(createOrJoinSection);
+        }
+        else
+        {
+            SetScreen(loginScreen);
+        }
     }
 
     /*
@@ -204,6 +213,7 @@ public class MainMenu : MonoBehaviourPun
         }
         NetworkManager.instance.SetPlayer(player);
         nicknameText.text = player.nickname;
+        barGraph.CreateGraph();
         SetScreen(homeScreen);
     }
 

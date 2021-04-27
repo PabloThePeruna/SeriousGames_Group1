@@ -279,8 +279,8 @@ public class UIManager : MonoBehaviourPun
             }
         }
 
-        NetworkManager.instance.localPlayer.AddGameResult(won, (int)Timer.chooseTime);
-        NetworkManager.instance.localPlayer.Save();
+        NetworkManager.localPlayer.AddGameResult(won, (int)Timer.chooseTime);
+        NetworkManager.localPlayer.Save();
         sceneController.LoadScene("Feedback");
     }
 

@@ -23,7 +23,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public int difficulty = 0; // 0 = easy, 1 = normal, 2 = hard
 
-    public Player localPlayer; // player from the database
+    public static Player localPlayer; // player from the database
+
+    public static bool isLoggedIn = false;
 
     [SerializeField] private MainMenu mainMenu;
     [SerializeField] private CasePicker casePicker;
@@ -38,12 +40,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             case2Set = false;
             DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
     {
-        PhotonNetwork.ConnectUsingSettings(); // connect to master server
-        PhotonNetwork.AutomaticallySyncScene = false;
+        if (!PhotonNetwork.IsConnected && !PhotonNetwork.OfflineMode)
+        {
+            PhotonNetwork.ConnectUsingSettings(); // connect to master server
+            PhotonNetwork.AutomaticallySyncScene = false;
+        }
     }
 
     /*
@@ -53,6 +62,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
      */
     public void LogOut()
     {
+        isLoggedIn = false;
         PhotonNetwork.Disconnect();
         Destroy(gameObject);
     }
@@ -73,6 +83,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
      */
     public void SetPlayer(Player player)
     {
+        isLoggedIn = true;
         localPlayer = player;
         if (player == null)
         {
@@ -248,7 +259,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarning("Disconnected from PUN2 servers.");
-        if (cause != DisconnectCause.DisconnectByClientLogic)
+        if (isLoggedIn)
         {
             PhotonNetwork.Reconnect();
         }
