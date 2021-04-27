@@ -22,6 +22,7 @@ public class OrganSelect : MonoBehaviour
     //Materials
     public Material transpMaterial;
     public Material normalSkinMaterial;
+    private Material ownMaterial;
 
     //Shaders
     public Shader showAlwaysShader;
@@ -34,11 +35,15 @@ public class OrganSelect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         zPR = FindObjectOfType<ZoomingPaningRotating>();
 
         StartCoroutine(OutlineSize());
 
         organSelector = hummingBirdOrganNumber;
+
+        ownMaterial = organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -46,7 +51,6 @@ public class OrganSelect : MonoBehaviour
     {
 
 
-        outlineSize = organsList[hummingBirdOrganNumber].GetComponent<Renderer>().sharedMaterial.GetFloat("_OutlineWidth");
 
         //Debug.Log("Outlinesize = " + outlineSize);
         //When other organ than skin is selected, make body transparent
@@ -66,7 +70,9 @@ public class OrganSelect : MonoBehaviour
         else if (zPR.IsOrganErlargened != true)
         {
             //In full body view show set see through with outlines -shader
-        organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = showAlwaysShader;
+            outlineSize = organsList[hummingBirdOrganNumber].GetComponent<Renderer>().sharedMaterial.GetFloat("_OutlineWidth");
+
+            organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = showAlwaysShader;
 
         }
 

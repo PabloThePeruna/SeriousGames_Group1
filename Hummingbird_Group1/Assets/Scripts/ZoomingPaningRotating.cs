@@ -197,22 +197,22 @@ public class ZoomingPaningRotating : MonoBehaviour
         cam.transform.Translate(new Vector3(0, 0, -10)); //offset camera
 
     }
-
+    
     void HighDetail()
     {
         
-        if (IsOrganErlargened == true && CanDoubleCliclk== true)
+        if (IsOrganErlargened == true && CanDoubleCliclk== true && oS.organSelector == 2)
         {
             if (Input.touchCount == 1 && Input.GetTouch(0).phase== TouchPhase.Began && Input.GetTouch(0).tapCount == 2)
             {
-                oS.organsList[oS.hummingBirdOrganNumber].SetActive(false);
-
+                //oS.organsList[oS.hummingBirdOrganNumber].SetActive(false);
+                Debug.Log("Show heart interiors");
             }
         }
         
        
     }
 
-
+    
 }
       

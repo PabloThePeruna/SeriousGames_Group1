@@ -46,7 +46,6 @@ public class OrganSelect2 : MonoBehaviour
     {
 
 
-        outlineSize2 = organsList2[hummingBirdOrganNumber2].GetComponent<Renderer>().sharedMaterial.GetFloat("_OutlineWidth");
 
         //Debug.Log("Outlinesize = " + outlineSize);
         //When other organ than skin is selected, make body transparent
@@ -66,6 +65,8 @@ public class OrganSelect2 : MonoBehaviour
         else if (zPR2.IsOrganErlargened != true)
         {
             //In full body view show set see through with outlines -shader
+            outlineSize2 = organsList2[hummingBirdOrganNumber2].GetComponent<Renderer>().sharedMaterial.GetFloat("_OutlineWidth");
+
             organsList2[hummingBirdOrganNumber2].GetComponent<Renderer>().material.shader = showAlwaysShader;
 
         }

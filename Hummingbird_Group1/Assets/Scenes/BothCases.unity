@@ -10819,12 +10819,12 @@ MonoBehaviour:
   - {fileID: 7517960557884384037}
   - {fileID: 919132149528890191}
   organSelector: 0
-  hummingBirdOrganNumber: 2
+  hummingBirdOrganNumber: 1
   outlineSize: 0
   transpMaterial: {fileID: 2100000, guid: fc7b10bb6a6c063409089d275bed190d, type: 2}
   normalSkinMaterial: {fileID: 2100000, guid: 1156f4a836363e241b3ee57e95dcf907, type: 2}
   showAlwaysShader: {fileID: 4800000, guid: 97bcf43fe7785d048a98ecd60ae4d486, type: 3}
-  standardShader: {fileID: 4800000, guid: 52ba6b39c44a60b4c998dc7f75a34f98, type: 3}
+  standardShader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &781135145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10912,12 +10912,12 @@ MonoBehaviour:
   - {fileID: 2057681764}
   - {fileID: 342737937}
   organSelector2: 0
-  hummingBirdOrganNumber2: 1
+  hummingBirdOrganNumber2: 2
   outlineSize2: 0
   transpMaterial: {fileID: 2100000, guid: fc7b10bb6a6c063409089d275bed190d, type: 2}
   normalSkinMaterial: {fileID: 2100000, guid: 1156f4a836363e241b3ee57e95dcf907, type: 2}
   showAlwaysShader: {fileID: 4800000, guid: 97bcf43fe7785d048a98ecd60ae4d486, type: 3}
-  standardShader: {fileID: 4800000, guid: 52ba6b39c44a60b4c998dc7f75a34f98, type: 3}
+  standardShader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &781135149
 MonoBehaviour:
   m_ObjectHideFlags: 0
