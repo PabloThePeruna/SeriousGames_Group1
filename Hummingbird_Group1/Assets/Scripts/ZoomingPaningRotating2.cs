@@ -205,15 +205,36 @@ public class ZoomingPaningRotating2 : MonoBehaviour
         {
             if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(0).tapCount == 2)
             {
-                //oS2.organsList2[oS2.hummingBirdOrganNumber2].SetActive(false);
+                //oS.organsList[oS.hummingBirdOrganNumber].SetActive(false);
                 Debug.Log("Show heart interiors");
-
+                SetToTransparent();
             }
+        }
+        else if (IsOrganErlargened == true && oS2.organSelector2 == 2)
+        {
+            SetToOpaque();
+        }
+
+        else if (!IsOrganErlargened)
+        {
+            oS2.organsList2[oS2.hummingBirdOrganNumber2].GetComponent<Renderer>().material.shader = oS2.showAlwaysShader;
+
         }
 
 
     }
+    private void SetToTransparent()
+    {
+        oS2.organsList2[oS2.hummingBirdOrganNumber2].GetComponent<Renderer>().material = oS2.transpHeartMaterial;
 
+
+    }
+    private void SetToOpaque()
+    {
+        oS2.organsList2[oS2.hummingBirdOrganNumber2].GetComponent<Renderer>().material = oS2.ownMaterial;
+
+
+    }
 
 }
 

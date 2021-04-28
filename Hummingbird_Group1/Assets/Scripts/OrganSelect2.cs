@@ -22,6 +22,8 @@ public class OrganSelect2 : MonoBehaviour
     //Materials
     public Material transpMaterial;
     public Material normalSkinMaterial;
+    public Material ownMaterial;
+    public Material transpHeartMaterial;
 
     //Shaders
     public Shader showAlwaysShader;

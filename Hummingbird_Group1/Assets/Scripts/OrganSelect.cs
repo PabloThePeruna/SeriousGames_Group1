@@ -22,7 +22,8 @@ public class OrganSelect : MonoBehaviour
     //Materials
     public Material transpMaterial;
     public Material normalSkinMaterial;
-    private Material ownMaterial;
+    public Material ownMaterial;
+    public Material transpHeartMaterial;
 
     //Shaders
     public Shader showAlwaysShader;
@@ -43,7 +44,6 @@ public class OrganSelect : MonoBehaviour
 
         organSelector = hummingBirdOrganNumber;
 
-        ownMaterial = organsList[hummingBirdOrganNumber].GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame

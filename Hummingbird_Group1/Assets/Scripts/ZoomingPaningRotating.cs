@@ -15,6 +15,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     public bool IsOrganErlargened = false;
     private OrganSelect oS;
 
+    private float transp = 0.6f;
 
     [SerializeField] private float slowDownTime = 0.005f;
 
@@ -207,12 +208,37 @@ public class ZoomingPaningRotating : MonoBehaviour
             {
                 //oS.organsList[oS.hummingBirdOrganNumber].SetActive(false);
                 Debug.Log("Show heart interiors");
+                SetToTransparent();
+
             }
+
         }
-        
-       
+        else if (IsOrganErlargened == true && oS.organSelector == 2)
+        {
+            SetToOpaque();
+        }
+
+        else if (!IsOrganErlargened)
+        {
+            oS.organsList[oS.hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = oS.showAlwaysShader;
+
+        }
+
     }
 
-    
+    private void SetToTransparent()
+    {
+        oS.organsList[oS.hummingBirdOrganNumber].GetComponent<Renderer>().material = oS.transpHeartMaterial;
+
+
+    }
+    private void SetToOpaque()
+    {
+        oS.organsList[oS.hummingBirdOrganNumber].GetComponent<Renderer>().material = oS.ownMaterial;
+
+
+    }
+
+
 }
       
