@@ -33,16 +33,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (!isInitialized) // avoid 2 copies of this
+        if (instance == null)
         {
             instance = this;
-            case1Set = false;
-            case2Set = false;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 

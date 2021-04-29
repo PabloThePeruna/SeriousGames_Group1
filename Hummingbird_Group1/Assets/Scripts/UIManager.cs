@@ -375,6 +375,7 @@ public class UIManager : MonoBehaviourPun
 
         NetworkManager.localPlayer.AddGameResult(won, (int)Timer.chooseTime);
         NetworkManager.localPlayer.Save();
+        NetworkManager.instance.LeaveRoom();
         sceneController.LoadScene("Feedback");
     }
 
