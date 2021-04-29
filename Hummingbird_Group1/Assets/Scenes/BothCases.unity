@@ -2957,7 +2957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &138793134
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11736,6 +11736,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneController: {fileID: 781135147}
+  case1:
+    patientName: 
+    patientRR: []
+    patientBP: []
+    patientO2Sat: []
+    patientHR: []
+    patientSympDesc: 
+    patientPatDesc: 
+    lab: []
+    medsTaken: 
+    patNum: 0
+    gender: 
+    age: 
+    height: 
+    weight: 
+    temperature: []
+    organNum: 0
+  case2:
+    patientName: 
+    patientRR: []
+    patientBP: []
+    patientO2Sat: []
+    patientHR: []
+    patientSympDesc: 
+    patientPatDesc: 
+    lab: []
+    medsTaken: 
+    patNum: 0
+    gender: 
+    age: 
+    height: 
+    weight: 
+    temperature: []
+    organNum: 0
   moreDetailPanel1: {fileID: 138793133}
   moreDetailPanel2: {fileID: 952343058}
   lessDetailPanel1: {fileID: 1224368880}
@@ -11760,6 +11794,7 @@ MonoBehaviour:
   patient1MoreDetailsTemp: {fileID: 1237191302}
   patient1MoreDetailsOxygen: {fileID: 465393942}
   patient1MoreDetailsMedicine: {fileID: 1640391598}
+  patient1PrognosisText: {fileID: 1833026714}
   patient1LessDetailsName: {fileID: 746199986}
   patient1LessDetailsGender: {fileID: 76647575}
   patient1LessDetailsAge: {fileID: 1755965866}
@@ -11782,6 +11817,7 @@ MonoBehaviour:
   patient2MoreDetailsTemp: {fileID: 191976750}
   patient2MoreDetailsOxygen: {fileID: 1328542335}
   patient2MoreDetailsMedicine: {fileID: 1423811447}
+  patient2PrognosisText: {fileID: 296630552}
   patient2LessDetailsName: {fileID: 472828840}
   patient2LessDetailsGender: {fileID: 210798457}
   patient2LessDetailsAge: {fileID: 759450141}
@@ -12015,7 +12051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &796418568
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12071,7 +12107,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 120, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12968,12 +13004,23 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1757515600}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 24
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 781135150}
+        m_MethodName: OnCase1SliderChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 848079504}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &877994318
 GameObject:
   m_ObjectHideFlags: 0
@@ -13819,7 +13866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &952343059
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17594,7 +17641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1224368881
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18522,12 +18569,23 @@ MonoBehaviour:
   m_HandleRect: {fileID: 811967808}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 24
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 781135150}
+        m_MethodName: OnCase2SliderChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1272520039}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1287754714
 GameObject:
   m_ObjectHideFlags: 0
@@ -26095,7 +26153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2075588620
 MonoBehaviour:
   m_ObjectHideFlags: 0

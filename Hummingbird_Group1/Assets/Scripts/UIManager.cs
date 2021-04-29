@@ -13,6 +13,10 @@ public enum CaseData { name, gender, age, weight, height, symptoms, hr, bp, rr, 
 public class UIManager : MonoBehaviourPun
 {
     public SceneController sceneController;
+
+    public Case case1;
+    public Case case2;
+
     //Panels
 
     public GameObject moreDetailPanel1;
@@ -61,6 +65,7 @@ public class UIManager : MonoBehaviourPun
     [SerializeField] private TextMeshProUGUI patient1MoreDetailsOxygen;
     [SerializeField] private TextMeshProUGUI patient1MoreDetailsMedicine;
     //[SerializeField] private TextMeshProUGUI patient1MoreDetailsLab;
+    [SerializeField] private TextMeshProUGUI patient1PrognosisText;
 
     [Header("Case 1: Less Details")]
     [SerializeField] private TextMeshProUGUI patient1LessDetailsName;
@@ -88,6 +93,7 @@ public class UIManager : MonoBehaviourPun
     [SerializeField] private TextMeshProUGUI patient2MoreDetailsOxygen;
     [SerializeField] private TextMeshProUGUI patient2MoreDetailsMedicine;
     //[SerializeField] private TextMeshProUGUI patient2MoreDetailsLab;
+    [SerializeField] private TextMeshProUGUI patient2PrognosisText;
 
     [Header("Case 2: Less Details")]
     [SerializeField] private TextMeshProUGUI patient2LessDetailsName;
@@ -128,7 +134,7 @@ public class UIManager : MonoBehaviourPun
             yield return null;
         }
 
-        Case case1 = NetworkManager.instance.patientCase1;
+        case1 = NetworkManager.instance.patientCase1;
 
         OrganSelect os1 = gameObject.GetComponent<OrganSelect>();
         os1.hummingBirdOrganNumber = case1.organNum;
@@ -139,11 +145,11 @@ public class UIManager : MonoBehaviourPun
         patient1MoreDetailsSymptoms.text = case1.patientSympDesc;
         patient1MoreDetailsWeight.text = case1.weight;
         patient1MoreDetailsHeight.text = case1.height;
-        patient1MoreDetailsHR.text = case1.patientHR;
-        patient1MoreDetailsBP.text = case1.patientBP;
-        patient1MoreDetailsRR.text = case1.patientRR;
-        patient1MoreDetailsTemp.text = case1.temperature;
-        patient1MoreDetailsOxygen.text = case1.patientO2Sat;
+        patient1MoreDetailsHR.text = case1.patientHR[0];
+        patient1MoreDetailsBP.text = case1.patientBP[0];
+        patient1MoreDetailsRR.text = case1.patientRR[0];
+        patient1MoreDetailsTemp.text = case1.temperature[0];
+        patient1MoreDetailsOxygen.text = case1.patientO2Sat[0];
         patient1MoreDetailsMedicine.text = case1.medsTaken;
         //patient1MoreDetailsLab.text = case1;
 
@@ -151,19 +157,19 @@ public class UIManager : MonoBehaviourPun
         patient1LessDetailsGender.text = case1.gender;
         patient1LessDetailsAge.text = case1.age;
         patient1LessDetailsSymptoms.text = case1.patientSympDesc;
-        patient1LessDetailsHR.text = case1.patientHR;
-        patient1LessDetailsBP.text = case1.patientBP;
-        patient1LessDetailsRR.text = case1.patientRR;
-        patient1LessDetailsOxygen.text = case1.patientO2Sat;
-        patient1LessDetailsTemp.text = case1.temperature;
-        patient1LessDetailsLab.text = case1.lab;
+        patient1LessDetailsHR.text = case1.patientHR[0];
+        patient1LessDetailsBP.text = case1.patientBP[0];
+        patient1LessDetailsRR.text = case1.patientRR[0];
+        patient1LessDetailsOxygen.text = case1.patientO2Sat[0];
+        patient1LessDetailsTemp.text = case1.temperature[0];
+        patient1LessDetailsLab.text = case1.lab[0];
         
         while (NetworkManager.instance.patientCase2.patientName == "")
         {
             yield return null;
         }
 
-        Case case2 = NetworkManager.instance.patientCase2;
+        case2 = NetworkManager.instance.patientCase2;
 
         OrganSelect2 os2 = gameObject.GetComponent<OrganSelect2>();
         os2.hummingBirdOrganNumber2 = case2.organNum;
@@ -174,11 +180,11 @@ public class UIManager : MonoBehaviourPun
         patient2MoreDetailsSymptoms.text = case2.patientSympDesc;
         patient2MoreDetailsWeight.text = case2.weight;
         patient2MoreDetailsHeight.text = case2.height;
-        patient2MoreDetailsHR.text = case2.patientHR;
-        patient2MoreDetailsBP.text = case2.patientBP;
-        patient2MoreDetailsRR.text = case2.patientRR;
-        patient2MoreDetailsTemp.text = case2.temperature;
-        patient2MoreDetailsOxygen.text = case2.patientO2Sat;
+        patient2MoreDetailsHR.text = case2.patientHR[0];
+        patient2MoreDetailsBP.text = case2.patientBP[0];
+        patient2MoreDetailsRR.text = case2.patientRR[0];
+        patient2MoreDetailsTemp.text = case2.temperature[0];
+        patient2MoreDetailsOxygen.text = case2.patientO2Sat[0];
         patient2MoreDetailsMedicine.text = case2.medsTaken;
         //patient2MoreDetailsLab.text = case2;
 
@@ -186,12 +192,102 @@ public class UIManager : MonoBehaviourPun
         patient2LessDetailsGender.text = case2.gender;
         patient2LessDetailsAge.text = case2.age;
         patient2LessDetailsSymptoms.text = case2.patientSympDesc;
-        patient2LessDetailsHR.text = case2.patientHR;
-        patient2LessDetailsBP.text = case2.patientBP;
-        patient2LessDetailsRR.text = case2.patientRR;
-        patient2LessDetailsOxygen.text = case2.patientO2Sat;
-        patient2LessDetailsTemp.text = case2.temperature;
-        patient2LessDetailsLab.text = case2.lab;
+        patient2LessDetailsHR.text = case2.patientHR[0];
+        patient2LessDetailsBP.text = case2.patientBP[0];
+        patient2LessDetailsRR.text = case2.patientRR[0];
+        patient2LessDetailsOxygen.text = case2.patientO2Sat[0];
+        patient2LessDetailsTemp.text = case2.temperature[0];
+        patient2LessDetailsLab.text = case2.lab[0];
+    }
+
+    public void OnCase1SliderChange(Slider slider)
+    {
+        patient1PrognosisText.text = "Prognosis: ";
+        if (slider.value < 0.2f)
+        {
+            patient1PrognosisText.text += "Now";
+            patient1MoreDetailsHR.text = case1.patientHR[0];
+            patient1MoreDetailsBP.text = case1.patientBP[0];
+            patient1MoreDetailsRR.text = case1.patientRR[0];
+            patient1MoreDetailsTemp.text = case1.temperature[0];
+            patient1MoreDetailsOxygen.text = case1.patientO2Sat[0];
+            //patient1MoreDetailsLab.text = case1.lab[0];
+        }
+        else if (slider.value < 0.5f)
+        {
+            patient1PrognosisText.text += "+1 hour";
+            patient1MoreDetailsHR.text = case1.patientHR[1];
+            patient1MoreDetailsBP.text = case1.patientBP[1];
+            patient1MoreDetailsRR.text = case1.patientRR[1];
+            patient1MoreDetailsTemp.text = case1.temperature[1];
+            patient1MoreDetailsOxygen.text = case1.patientO2Sat[1];
+            //patient1MoreDetailsLab.text = case1.lab[1];
+        }
+        else if (slider.value < 0.75)
+        {
+            patient1PrognosisText.text += "+2 hours";
+            patient1MoreDetailsHR.text = case1.patientHR[2];
+            patient1MoreDetailsBP.text = case1.patientBP[2];
+            patient1MoreDetailsRR.text = case1.patientRR[2];
+            patient1MoreDetailsTemp.text = case1.temperature[2];
+            patient1MoreDetailsOxygen.text = case1.patientO2Sat[2];
+            //patient1MoreDetailsLab.text = case1.lab[2];
+        }
+        else
+        {
+            patient1PrognosisText.text += "+24 hours";
+            patient1MoreDetailsHR.text = case1.patientHR[3];
+            patient1MoreDetailsBP.text = case1.patientBP[3];
+            patient1MoreDetailsRR.text = case1.patientRR[3];
+            patient1MoreDetailsTemp.text = case1.temperature[3];
+            patient1MoreDetailsOxygen.text = case1.patientO2Sat[3];
+            //patient1MoreDetailsLab.text = case1.lab[3];
+        }
+    }
+
+    public void OnCase2SliderChange(Slider slider)
+    {
+        patient2PrognosisText.text = "Prognosis: ";
+        if (slider.value < 0.2f)
+        {
+            patient2PrognosisText.text += "Now";
+            patient2MoreDetailsHR.text = case2.patientHR[0];
+            patient2MoreDetailsBP.text = case2.patientBP[0];
+            patient2MoreDetailsRR.text = case2.patientRR[0];
+            patient2MoreDetailsTemp.text = case2.temperature[0];
+            patient2MoreDetailsOxygen.text = case2.patientO2Sat[0];
+            //patient2MoreDetailsLab.text = case2.lab[0];
+        }
+        else if (slider.value < 0.5f)
+        {
+            patient2PrognosisText.text += "+1 hour";
+            patient2MoreDetailsHR.text = case2.patientHR[1];
+            patient2MoreDetailsBP.text = case2.patientBP[1];
+            patient2MoreDetailsRR.text = case2.patientRR[1];
+            patient2MoreDetailsTemp.text = case2.temperature[1];
+            patient2MoreDetailsOxygen.text = case2.patientO2Sat[1];
+            //patient2MoreDetailsLab.text = case2.lab[1];
+        }
+        else if (slider.value < 0.75)
+        {
+            patient2PrognosisText.text += "+2 hours";
+            patient2MoreDetailsHR.text = case2.patientHR[2];
+            patient2MoreDetailsBP.text = case2.patientBP[2];
+            patient2MoreDetailsRR.text = case2.patientRR[2];
+            patient2MoreDetailsTemp.text = case2.temperature[2];
+            patient2MoreDetailsOxygen.text = case2.patientO2Sat[2];
+            //patient2MoreDetailsLab.text = case2.lab[2];
+        }
+        else
+        {
+            patient2PrognosisText.text += "+24 hours";
+            patient2MoreDetailsHR.text = case2.patientHR[3];
+            patient2MoreDetailsBP.text = case2.patientBP[3];
+            patient2MoreDetailsRR.text = case2.patientRR[3];
+            patient2MoreDetailsTemp.text = case2.temperature[3];
+            patient2MoreDetailsOxygen.text = case2.patientO2Sat[3];
+            //patient2MoreDetailsLab.text = case2.lab[3];
+        }
     }
 
     void MoreDetailsClick1()
@@ -247,8 +343,6 @@ public class UIManager : MonoBehaviourPun
     IEnumerator WaitForTimerToEvaluateChoice(int choice)
     { 
         yield return null;
-        Case case1 = NetworkManager.instance.patientCase1;
-        Case case2 = NetworkManager.instance.patientCase2;
         bool won = false;
         if (choice == 1)
         {

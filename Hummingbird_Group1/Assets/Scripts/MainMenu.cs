@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviourPun
 
     private void Start()
     {
+        //GenerateHummingbirdTimeline();
         // Database.PostPlayerToDatabase(new Player("testlogin", "test@login.com", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
         if (NetworkManager.isLoggedIn)
         {
@@ -44,6 +45,20 @@ public class MainMenu : MonoBehaviourPun
         {
             SetScreen(loginScreen);
         }
+    }
+
+    public void GenerateHummingbirdTimeline()
+    {
+        Case case1 = new Case("Larry", 1, "Male", "60", "N/A", "N/A",
+            new string[] { "110", "106", "90", "85" }, new string[] { "25", "27", "20", "16" }, 
+            new string[] { "N/A", "N/A", "N/A", "N/A" }, new string[] { "90", "91", "95", "95" }, 
+            new string[] { "N/A", "N/A", "N/A", "N/A" }, 
+            "Abdominal pain, swollen abdomen, ankles, wet cough", 
+            "Alcohol abuse for 25 years led to liver failure and transplant of a liver 6 months ago", 
+            new string[] { "Bilirubine: 10 000\nAlbumine: 10", "Bilirubine: 10 000\nAlbumine: 10", "Bilirubine: 10 000\nAlbumine: 10", "Bilirubine: 11 000\nAlbumine: 12" }, 
+            "Prednisolon (immunosuppressive), Antibiotic prophylaxis", 
+            3);
+        Database.PostCaseToDatabase(case1, (value) => { });
     }
 
     /*

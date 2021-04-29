@@ -121,29 +121,31 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             string patientName1 = "";
             string patientName2 = "";
-            if (difficulty == 0)
-            {
-                patientName1 = "James";
-                patientName2 = "Creed";
-            }
-            else if (difficulty == 1)
-            {
-                int choice = Random.Range(0, 100) % 2;
-                patientName1 = "Jeanette";
-                if (choice == 0)
-                {
-                    patientName2 = "Creed";
-                }
-                else //if (choice == 1)
-                {
-                    patientName2 = "Carla";
-                }
-            }
-            else if (difficulty == 2)
-            {
-                patientName1 = "Creed";
-                patientName2 = "Carla";
-            }
+            patientName1 = "Larry";
+            patientName2 = "Larry";
+            //if (difficulty == 0)
+            //{
+            //    patientName1 = "James";
+            //    patientName2 = "Creed";
+            //}
+            //else if (difficulty == 1)
+            //{
+            //    int choice = Random.Range(0, 100) % 2;
+            //    patientName1 = "Jeanette";
+            //    if (choice == 0)
+            //    {
+            //        patientName2 = "Creed";
+            //    }
+            //    else //if (choice == 1)
+            //    {
+            //        patientName2 = "Carla";
+            //    }
+            //}
+            //else if (difficulty == 2)
+            //{
+            //    patientName1 = "Creed";
+            //    patientName2 = "Carla";
+            //}
             int random = Random.Range(0, 2);
             if (random == 0)
             {
