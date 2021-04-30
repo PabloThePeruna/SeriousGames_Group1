@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5608,6 +5608,8 @@ MonoBehaviour:
   outlineSize: 0
   transpMaterial: {fileID: 2100000, guid: fc7b10bb6a6c063409089d275bed190d, type: 2}
   normalSkinMaterial: {fileID: 2100000, guid: 1156f4a836363e241b3ee57e95dcf907, type: 2}
+  ownMaterial: {fileID: 0}
+  transpHeartMaterial: {fileID: 0}
   showAlwaysShader: {fileID: 4800000, guid: a2c9dbb1cf69f3f4183169185ebfabed, type: 3}
   standardShader: {fileID: 4800000, guid: 52ba6b39c44a60b4c998dc7f75a34f98, type: 3}
 --- !u!114 &2080820119
