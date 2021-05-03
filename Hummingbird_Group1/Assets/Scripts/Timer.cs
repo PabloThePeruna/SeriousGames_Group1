@@ -62,4 +62,9 @@ public class Timer : MonoBehaviour
         Debug.Log("Patient two chosen at time: " + chooseTime + " seconds.");
     }
 
+    public List<int> GetMinuteSecondList()
+    {
+        var list = new List<int>() { (int)(chooseTime / 60f), (int)(chooseTime % 60f) };
+        return list;
+    }
 }
