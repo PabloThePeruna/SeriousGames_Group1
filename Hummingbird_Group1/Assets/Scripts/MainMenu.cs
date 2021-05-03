@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourPun
 {
@@ -25,10 +26,17 @@ public class MainMenu : MonoBehaviourPun
     public TextMeshProUGUI playerListText; // display list of players
     public GameObject ownRoom; // button groups for room if this is the master client
     public GameObject foundRoom; // buttons groups for room if this is not the master client
-    public GameObject easyButton; // button to set difficulty to easy
-    public GameObject medButton; // button to set difficulty to medium
-    public GameObject hardButton; // button to set difficulty to hard
+    public Button easyButton; // button to set difficulty to easy
+    public TextMeshProUGUI easyButtonText;
+    public Button medButton; // button to set difficulty to medium
+    public TextMeshProUGUI medButtonText; 
+    public Button hardButton; // button to set difficulty to hard
+    public TextMeshProUGUI hardButtonText; 
     public TextMeshProUGUI diffculityLabel; // show non-master client the chosen difficulty
+    [SerializeField] private Sprite selectedButtonSprite;
+    [SerializeField] private Sprite unselectedButtonSprite;
+    private Color32 difficultyDark = new Color32(0x15, 0x40, 0x4D, 0xFF);
+    private Color32 difficultyLight = new Color32(0xFF, 0xFF, 0xFF, 0xFF);
 
     private string userID;
 
@@ -255,29 +263,34 @@ public class MainMenu : MonoBehaviourPun
     {
         SetScreen(waitingRoomSection, PhotonNetwork.IsMasterClient);
 
-        //if (NetworkManager.instance.difficulty == 0)
-        //{
-        //    easyButton.SetActive(true);
-        //    medButton.SetActive(false);
-        //    hardButton.SetActive(false);
-        //    //diffculityLabel.text = "Easy";
-        //} else if (NetworkManager.instance.difficulty == 1)
-        //{
-        //    easyButton.SetActive(false);
-        //    medButton.SetActive(true);
-        //    hardButton.SetActive(false);
-        //    //diffculityLabel.text = "Medium";
-        //} else if (NetworkManager.instance.difficulty == 2)
-        //{
-        //    easyButton.SetActive(false);
-        //    medButton.SetActive(false);
-        //    hardButton.SetActive(true);
-        //    //diffculityLabel.text = "Hard";
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("Not a valid difficulty level.");
-        //}
+        easyButton.image.sprite = unselectedButtonSprite;
+        easyButtonText.color = difficultyLight;
+        medButton.image.sprite = unselectedButtonSprite;
+        medButtonText.color = difficultyLight;
+        hardButton.image.sprite = unselectedButtonSprite;
+        hardButtonText.color = difficultyLight;
+        if (NetworkManager.instance.difficulty == 0)
+        {
+            easyButton.image.sprite = selectedButtonSprite;
+            easyButtonText.color = difficultyDark;
+            diffculityLabel.text = "Easy";
+        }
+        else if (NetworkManager.instance.difficulty == 1)
+        {
+            medButton.image.sprite = selectedButtonSprite;
+            medButtonText.color = difficultyDark; 
+            diffculityLabel.text = "Normal";
+        }
+        else if (NetworkManager.instance.difficulty == 2)
+        {
+            hardButton.image.sprite = selectedButtonSprite;
+            hardButtonText.color = difficultyDark; 
+            diffculityLabel.text = "Hard";
+        }
+        else
+        {
+            Debug.LogWarning("Not a valid difficulty level.");
+        }
 
         roomCodeText.text = NetworkManager.instance.roomCode;
         playerListText.text = "";
