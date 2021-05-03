@@ -43,7 +43,7 @@ public class Timer : MonoBehaviour
 
          //Prints timer just in test purposes
          //Debug.Log("Time " + timer);
-        
+
 
     }
 
@@ -62,6 +62,9 @@ public class Timer : MonoBehaviour
         Debug.Log("Patient two chosen at time: " + chooseTime + " seconds.");
     }
 
+    /*
+     * returns a list where list[0] is the minutes from chooseTime and list[1] is the seconds
+     */
     public List<int> GetMinuteSecondList()
     {
         var list = new List<int>() { (int)(chooseTime / 60f), (int)(chooseTime % 60f) };
