@@ -20,6 +20,8 @@ public class BarGraph : MonoBehaviour
     private RectTransform LineContainer;
     private RectTransform GridContainer;
 
+    [SerializeField] private GameObject noGamesText;
+
     public float sum;
     public float average;
     public float yMax;
@@ -30,6 +32,14 @@ public class BarGraph : MonoBehaviour
      */
     public void CreateGraph()
     {
+        if (NetworkManager.localPlayer.numGamesPlayed == 0)
+        {
+            noGamesText.SetActive(true);
+            return;
+        }
+
+        noGamesText.SetActive(false);
+
         graphContaner = transform.Find("GraphContaner").GetComponent<RectTransform>();
         labelX = graphContaner.Find("LabelX").GetComponent<RectTransform>();
         labelY = graphContaner.Find("LabelY").GetComponent<RectTransform>();
@@ -59,6 +69,7 @@ public class BarGraph : MonoBehaviour
 
         //avgLine.transform.localPosition = new Vector2(0, averageLinePosY - (graphContaner.sizeDelta.y / 2));
 
+        Debug.Log("Creating graph.");
         ShowGraph(avg, values, (int _i) => "" + (_i + 1), (float _f) => Mathf.RoundToInt(_f) + "s");
     }
 
