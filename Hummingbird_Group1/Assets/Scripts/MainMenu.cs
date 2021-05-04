@@ -188,7 +188,7 @@ public class MainMenu : MonoBehaviourPun
         {
             yield return null;
         }
-        NetworkManager.instance.LoadLevel(1);
+        NetworkManager.instance.photonView.RPC("LoadLevel", RpcTarget.All, 1);
     }
 
     public void QuitGame()
