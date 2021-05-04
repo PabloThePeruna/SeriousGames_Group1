@@ -17,6 +17,8 @@ public class Notes : MonoBehaviour
     public GameObject Note;
     public GameObject NoteItself;
 
+    private string username;
+
     private float tapCount;
          
 
@@ -25,6 +27,7 @@ public class Notes : MonoBehaviour
 
     private void Start()
     {
+        username = NetworkManager.localPlayer.nickname;
         commentBtn.onClick.AddListener(Comment);
     }
 
@@ -71,7 +74,7 @@ public class Notes : MonoBehaviour
         {
             
             chatBox.ActivateInputField();
-            SendMessageToChat(">> " + chatBox.text);  //add mark before a note
+            SendMessageToChat(username + ": " + chatBox.text);  //add mark before a note
             chatBox.text = "";
             
         }
