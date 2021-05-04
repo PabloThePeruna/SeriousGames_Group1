@@ -51,9 +51,20 @@ public class ZoomingPaningRotating2 : MonoBehaviour
 
         Body2();
 
+        
+        //With three taps back to full body
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(0).tapCount == 3 && cam2.pixelRect.Contains(Input.mousePosition))
+        {
+            BackToFullBody2();
 
+            if (oS2.organSelector2 == 2)
+            {
+                SetToOpaque();
 
+            }
 
+        }
+        
 
     }
     void Rotation()
@@ -186,7 +197,7 @@ public class ZoomingPaningRotating2 : MonoBehaviour
         }
 
         //Set camera back to original position after return to full body view
-        target2 = GameObject.Find("male_body").transform;
+        target2 = GameObject.Find("Target2").transform;
         cam2.orthographicSize = 1;
 
         dir = prevPos - cam2.ScreenToViewportPoint(Input.mousePosition); //calculate the difference between the old and new finger position
@@ -201,7 +212,7 @@ public class ZoomingPaningRotating2 : MonoBehaviour
     void HighDetail2()
     {
 
-        if (IsOrganErlargened == true && CanDoubleCliclk == true && oS2.organSelector2 == 2)
+        if (IsOrganErlargened == true && CanDoubleCliclk == true && oS2.hummingBirdOrganNumber2 == 2)
         {
             if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(0).tapCount == 2)
             {
@@ -210,7 +221,7 @@ public class ZoomingPaningRotating2 : MonoBehaviour
                 SetToTransparent();
             }
         }
-        else if (IsOrganErlargened == true && oS2.organSelector2 == 2)
+        else if (IsOrganErlargened == true && oS2.hummingBirdOrganNumber2 == 2)
         {
             SetToOpaque();
         }

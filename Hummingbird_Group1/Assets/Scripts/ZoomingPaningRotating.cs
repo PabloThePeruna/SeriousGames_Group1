@@ -52,9 +52,20 @@ public class ZoomingPaningRotating : MonoBehaviour
 
         Body();
 
-       
 
-       
+        //With three taps back to full body
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began && Input.GetTouch(0).tapCount == 3 && cam.pixelRect.Contains(Input.mousePosition))
+        {
+            BackToFullBody();
+
+            if (oS.organSelector == 2)
+            {
+                SetToOpaque();
+
+            }
+        }
+        
+
 
     }
     void Rotation()
@@ -187,7 +198,7 @@ public class ZoomingPaningRotating : MonoBehaviour
         }
 
         //Set camera back to original position after return to full body view
-        target = GameObject.Find("male_body").transform;
+        target = GameObject.Find("Target").transform;
         cam.orthographicSize = 1;
 
         dir = prevPos - cam.ScreenToViewportPoint(Input.mousePosition); //calculate the difference between the old and new finger position
@@ -202,7 +213,7 @@ public class ZoomingPaningRotating : MonoBehaviour
     void HighDetail()
     {
         
-        if (IsOrganErlargened == true && CanDoubleCliclk== true && oS.organSelector == 2)
+        if (IsOrganErlargened == true && CanDoubleCliclk== true && oS.hummingBirdOrganNumber == 2)
         {
             if (Input.touchCount == 1 && Input.GetTouch(0).phase== TouchPhase.Began && Input.GetTouch(0).tapCount == 2)
             {
@@ -213,7 +224,7 @@ public class ZoomingPaningRotating : MonoBehaviour
             }
 
         }
-        else if (IsOrganErlargened == true && oS.organSelector == 2)
+        else if (IsOrganErlargened == true && oS.hummingBirdOrganNumber == 2)
         {
             SetToOpaque();
         }
@@ -223,6 +234,8 @@ public class ZoomingPaningRotating : MonoBehaviour
             oS.organsList[oS.hummingBirdOrganNumber].GetComponent<Renderer>().material.shader = oS.showAlwaysShader;
 
         }
+
+
 
     }
 
