@@ -24,15 +24,15 @@ public class OpenSpecificCase : MonoBehaviour
 
     public void Update()
     {
-        if (IsCanvasChanged)
-        {
-            canvas2.SetActive(true);
+        //if (IsCanvasChanged)
+        //{
+        //    canvas2.SetActive(true);
 
-            home.SetActive(false);
-            multip_start.SetActive(false);
+        //    home.SetActive(false);
+        //    multip_start.SetActive(false);
 
-        }
-        IsCanvasChanged = false;
+        //}
+        //IsCanvasChanged = false;
 
     }
 
