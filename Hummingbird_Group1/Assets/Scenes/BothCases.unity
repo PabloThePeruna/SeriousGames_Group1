@@ -276,7 +276,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5636788}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1176258950}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5636788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3017,7 +3028,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 136797315}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 171929230}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &136797315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12012,7 +12034,7 @@ GameObject:
   - component: {fileID: 719030717}
   - component: {fileID: 719030716}
   m_Layer: 5
-  m_Name: CommentButton
+  m_Name: CommentButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22463,11 +22485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMessages: 30
-  chatPanel: {fileID: 0}
+  chatPanel: {fileID: 1026085983}
   textObject: {fileID: 4995105202553419751, guid: 91919ecbdb8af6a4ea59599f5b3184ea,
     type: 3}
-  chatBox: {fileID: 0}
-  commentBtn: {fileID: 0}
+  chatBox: {fileID: 1656304797}
+  commentBtn: {fileID: 1074434283}
   notesBtn: {fileID: 205541036}
   IsClicked: 0
   Note: {fileID: 171929230}
@@ -25351,13 +25373,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMessages: 30
-  chatPanel: {fileID: 25568280}
-  textObject: {fileID: 4995105202553419751, guid: 91919ecbdb8af6a4ea59599f5b3184ea,
+  chatPanel2: {fileID: 25568280}
+  textObject2: {fileID: 4995105202553419751, guid: 91919ecbdb8af6a4ea59599f5b3184ea,
     type: 3}
-  chatBox: {fileID: 1445355019}
-  commentBtn: {fileID: 719030716}
-  notesBtn: {fileID: 263297822}
-  IsClicked: 0
+  chatBox2: {fileID: 1445355019}
+  commentBtn2: {fileID: 719030716}
+  notesBtn2: {fileID: 263297822}
+  IsClicked2: 0
   Note: {fileID: 1176258950}
   MoreDetails: {fileID: 952343058}
   LessDetails: {fileID: 796418567}

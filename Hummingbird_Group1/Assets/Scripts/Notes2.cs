@@ -9,12 +9,12 @@ public class Notes2 : MonoBehaviour
 {
     public int maxMessages = 50; //Showing only 30 last messages
 
-    public GameObject chatPanel, textObject;
-    public TMP_InputField chatBox;
+    public GameObject chatPanel2, textObject2;
+    public TMP_InputField chatBox2;
 
-    public Button commentBtn;
-    public Button notesBtn;
-    public bool IsClicked;
+    public Button commentBtn2;
+    public Button notesBtn2;
+    public bool IsClicked2;
 
     public GameObject Note;
 
@@ -34,8 +34,8 @@ public class Notes2 : MonoBehaviour
     private void Start()
     {
         username = NetworkManager.localPlayer.nickname;
-        commentBtn.onClick.AddListener(Comment);
-        notesBtn.onClick.AddListener(ShowNotes);
+        commentBtn2.onClick.AddListener(Comment);
+        notesBtn2.onClick.AddListener(ShowNotes);
 
         Note.transform.localScale = new Vector3(0f, 0f, 0f);
         Note.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -64,7 +64,7 @@ public class Notes2 : MonoBehaviour
 
         newMessage.text = text;
 
-        GameObject newText = Instantiate(textObject, chatPanel.transform);
+        GameObject newText = Instantiate(textObject2, chatPanel2.transform);
 
         newMessage.textObject = newText.GetComponent<Text>();
 
@@ -80,12 +80,12 @@ public class Notes2 : MonoBehaviour
     // Clicking comment button send note to the chat
     public void Comment()
     {
-        if (chatBox.text != "")
+        if (chatBox2.text != "")
         {
 
-            chatBox.ActivateInputField();
-            SendMessageToChat(username + ": " + chatBox.text);  //add mark before a note
-            chatBox.text = "";
+            chatBox2.ActivateInputField();
+            SendMessageToChat(username + ": " + chatBox2.text);  //add mark before a note
+            chatBox2.text = "";
 
         }
     }
@@ -93,15 +93,15 @@ public class Notes2 : MonoBehaviour
     // Set a note active while double tapping
     public void ShowNotes()
     {
-        if (IsClicked == false)
+        if (IsClicked2 == false)
         {
             Note.gameObject.SetActive(true);   // Set Notes to be seen
-            IsClicked = true;
+            IsClicked2 = true;
         }
         else
         {
             Note.gameObject.SetActive(false);
-            IsClicked = false;
+            IsClicked2 = false;
         }
 
     }
