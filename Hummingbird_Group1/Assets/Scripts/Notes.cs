@@ -7,7 +7,7 @@ using System;
 
 public class Notes : MonoBehaviour
 {
-    public int maxMessages = 30; //Showing only 30 last messages
+    public int maxMessages = 50; //Showing only 30 last messages
 
     public GameObject chatPanel, textObject;
     public TMP_InputField chatBox;
