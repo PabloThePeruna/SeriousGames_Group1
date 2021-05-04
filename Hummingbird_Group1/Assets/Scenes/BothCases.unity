@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4248,7 +4248,7 @@ GameObject:
   - component: {fileID: 205541037}
   - component: {fileID: 205541036}
   m_Layer: 5
-  m_Name: NotesButton
+  m_Name: NotesButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5705,7 +5705,7 @@ GameObject:
   - component: {fileID: 263297823}
   - component: {fileID: 263297822}
   m_Layer: 5
-  m_Name: NotesButton (1)
+  m_Name: NotesButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22468,7 +22468,7 @@ MonoBehaviour:
     type: 3}
   chatBox: {fileID: 0}
   commentBtn: {fileID: 0}
-  notesBtn: {fileID: 498656738}
+  notesBtn: {fileID: 205541036}
   IsClicked: 0
   Note: {fileID: 171929230}
   MoreDetails: {fileID: 138793133}
@@ -25356,7 +25356,7 @@ MonoBehaviour:
     type: 3}
   chatBox: {fileID: 1445355019}
   commentBtn: {fileID: 719030716}
-  notesBtn: {fileID: 205541036}
+  notesBtn: {fileID: 263297822}
   IsClicked: 0
   Note: {fileID: 1176258950}
   MoreDetails: {fileID: 952343058}
