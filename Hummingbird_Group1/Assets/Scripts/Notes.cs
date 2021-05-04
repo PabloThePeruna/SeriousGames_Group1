@@ -15,6 +15,8 @@ public class Notes : MonoBehaviour
 
     // Set Note feature active by double tapping
     public GameObject Note;
+    public GameObject NoteItself;
+
     private float tapCount;
          
 
@@ -90,6 +92,8 @@ public class Notes : MonoBehaviour
             StopCoroutine(Countdown());
 
             Note.SetActive(true);   // Set Note to be seen
+            GameObject note = Instantiate(NoteItself, transform.position, transform.rotation);
+            note.transform.parent = Note.transform;
         }
 
     }
