@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 
-public class Notes : MonoBehaviour
+public class Notes2 : MonoBehaviour
 {
     public int maxMessages = 30; //Showing only 30 last messages
 
@@ -15,7 +15,7 @@ public class Notes : MonoBehaviour
     public Button commentBtn;
     public Button notesBtn;
     public bool IsClicked;
-    
+
     public GameObject Note;
 
     public GameObject MoreDetails;
@@ -25,8 +25,8 @@ public class Notes : MonoBehaviour
 
     private string username;
 
-   
-         
+
+
 
     [SerializeField]
     List<Message> messageList = new List<Message>();
@@ -80,20 +80,20 @@ public class Notes : MonoBehaviour
     // Clicking comment button send note to the chat
     public void Comment()
     {
-        if(chatBox.text != "")
+        if (chatBox.text != "")
         {
-            
+
             chatBox.ActivateInputField();
             SendMessageToChat(username + ": " + chatBox.text);  //add mark before a note
             chatBox.text = "";
-            
+
         }
     }
 
     // Set a note active while double tapping
     public void ShowNotes()
     {
-        if(IsClicked == false)
+        if (IsClicked == false)
         {
             Note.gameObject.SetActive(true);   // Set Notes to be seen
             IsClicked = true;
@@ -103,7 +103,7 @@ public class Notes : MonoBehaviour
             Note.gameObject.SetActive(false);
             IsClicked = false;
         }
-        
+
     }
 
     public void ChanegSizeSmaller()
@@ -111,7 +111,7 @@ public class Notes : MonoBehaviour
         if (LessDetails.activeSelf)
         {
             Note.transform.localScale = new Vector3(0.4972f, 0.4972f, 0.4972f);
-            Note.transform.localPosition = new Vector3(-357.09f, -123.95f, 0f);
+            Note.transform.localPosition = new Vector3(42f, -123.95f, 0f);
         }
     }
 
@@ -137,5 +137,3 @@ public class Notes : MonoBehaviour
     }
 
 }
-
-
