@@ -16,7 +16,9 @@ public class ResultManager : MonoBehaviour
     public TextMeshProUGUI hedder;
     
     int timer;
-    
+
+    //Change the player name to a heading
+    public TextMeshProUGUI username;
   
 
     // Start is called before the first frame update
@@ -28,6 +30,8 @@ public class ResultManager : MonoBehaviour
     }
     void Start()
     {
+        username.SetText(NetworkManager.localPlayer.nickname);
+
         int minutes = timer / 60;
         int seconds = timer % 60;
         //Show the chooseTime in result screen

@@ -11,4 +11,10 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LogOut()
+    {
+        NetworkManager.instance.LogOut();
+        SceneManager.LoadScene(0);
+    }
+
 }
