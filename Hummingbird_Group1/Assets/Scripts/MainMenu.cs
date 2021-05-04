@@ -42,6 +42,7 @@ public class MainMenu : MonoBehaviourPun
 
     private void Start()
     {
+        GenerateHummingbirdTimeline();
         // Database.PostPlayerToDatabase(new Player("testlogin", "test@login.com", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
         if (NetworkManager.isLoggedIn)
         {
@@ -58,7 +59,59 @@ public class MainMenu : MonoBehaviourPun
     public void GenerateHummingbirdTimeline()
     {
         // Create case
+        //Case patient1 = new Case("Larry", 1, "Male", "60 years", "N/A", "N/A",
+        //    new string[] { "110", "106", "90", "85" }, new string[] { "25", "27", "20", "16" },
+        //    new string[] { "N/A", "N/A", "N/A", "N/A" }, new string[] { "90", "91", "95", "95" },
+        //    new string[] { "N/A", "N/A", "N/A", "N/A" },
+        //    "Abdominal pain, swollen abdomen; wet cough; swollen ankles",
+        //    "Alcohol abuse for 20 years led to liver failure; liver transplant 6 months ago",
+        //    new string[] { "Bilirubine 10 000;  Albimune 10", "Bilirubine 10 000;  Albimune 10", "Bilirubine 10 000;  Albimune 10", "Bilirubine 11 000;  Albimune 12" },
+        //    "Prednisolon (immunosuppressive)\nAntibiotic prophylaxis", 3);
+        //Case patient2 = new Case("Jeanette", 2, "Female", "77 years", "165 cm", "100 kg",
+        //    new string[] { "100", "100", "95", "75" }, new string[] { "25", "25", "25", "12" },
+        //    new string[] { "75/35", "82/37", "85/35", "120/70" }, new string[] { "96", "96", "96", "N/A" },
+        //    new string[] { "N/A", "N/A", "N/A", "N/A" },
+        //    "Pain in the chest and left arm;  anxious and silent",
+        //    "Diabetics Mellitus, type II; obese",
+        //    new string[] { "N/A", "N/A", "N/A", "N/A" },
+        //    "Metformine (for diabetes)", 2);
+        //Case patient2 = new Case("James", 3, "Male", "45 years", "N/A", "N/A",
+        //    new string[] { "60", "60", "60", "N/A" }, new string[] { "14", "14", "14", "N/A" },
+        //    new string[] { "140/85", "140/85", "140/85", "N/A" }, new string[] { "98", "98", "98", "N/A" },
+        //    new string[] { "N/A", "N/A", "N/A", "N/A" },
+        //    "Found unconscious on the street (patient was biking); uncounscious for few minutes and bit tongue; disoriented in place and time",
+        //    "History of epilepsy",
+        //    new string[] { "Neurological E3M5V3 Glasgow coma scale; EEG post ictal no epileptic activity", "Neurological E3M5V4 Glasgow coma scale", "Neurological E4M6V5 Glasgow coma scale", "N/A" },
+        //    "Kepra (anti-epileptica)", 1);
+        //Case patient2 = new Case("Creed", 4, "Male", "60 years", "175 cm", "110 kg",
+        //    new string[] { "110", "120", "0", "N/A" }, new string[] { "32", "40", "20", "N/A" },
+        //    new string[] { "130/90", "130/90", "0", "N/A" }, new string[] { "90", "80", "0", "N/A" },
+        //    new string[] { "40", "40", "40", "N/A" },
+        //    "Cough, shortness of breath; fever; feeling unwell 5 days ago, started to feel better but the last few days has had respiratory distress",
+        //    "Obese; hypertension and Diabetic Mellitus type II",
+        //    new string[] { "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "Cardiac arrest after intubation", "N/A" },
+        //    "Metformine (for diabetes)\nDiuretics/betablockers (anti/hypertension treatment", 4);
+        Case patient2 = new Case("Carla", 5, "Male", "60 years", "175 cm", "110 kg",
+            new string[] { "110", "120", "0", "N/A" }, new string[] { "32", "40", "20", "N/A" },
+            new string[] { "130/90", "130/90", "0", "N/A" }, new string[] { "90", "80", "0", "N/A" },
+            new string[] { "40", "40", "40", "N/A" },
+            "Cough, shortness of breath; fever; feeling unwell 5 days ago, started to feel better but the last few days has had respiratory distress",
+            "Obese; hypertension and Diabetic Mellitus type II",
+            new string[] { "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "Cardiac arrest after intubation", "N/A" },
+            "Metformine (for diabetes)\nDiuretics/betablockers (anti/hypertension treatment", 4);
         // Post to database
+        Database.PostCaseToDatabase(patient2, (bool succeeded) =>
+        {
+            if (succeeded)
+            {
+                Debug.Log(patient2.patientName + " post success!");
+            }
+            else
+            {
+
+                Debug.Log(patient2.patientName + " post fail!");
+            }
+        });
     }
 
     /*
@@ -240,18 +293,23 @@ public class MainMenu : MonoBehaviourPun
     public Player CreateNewPlayer()
     {
         Player p = new Player(userID, emailInput.text, emailInput.text, 0, 0, new List<bool>(), new List<int>());
-        Database.PostPlayerToDatabase(p, (bool succeeded) =>
+        if (userID != "")
         {
-            if (succeeded)
+            Database.PostPlayerToDatabase(p, (bool succeeded) =>
             {
-                Debug.Log("Successfully posted new player.");
-            }
-            else
-            {
-                Debug.LogWarning("Player could not be posted to database.");
-            }
-        });
-
+                if (succeeded)
+                {
+                    Debug.Log("Successfully posted new player.");
+                }
+                else
+                {
+                    Debug.LogWarning("Player could not be posted to database.");
+                }
+            });
+        } else
+        {
+            Debug.LogWarning("Do not post empty userID");
+        }
         return p;
     }
 
