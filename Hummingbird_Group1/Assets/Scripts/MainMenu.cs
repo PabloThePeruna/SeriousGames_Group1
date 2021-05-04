@@ -266,7 +266,14 @@ public class MainMenu : MonoBehaviourPun
                 i--;
             }
         }
-        Database.RetrievePlayerFromDatabase(userID, LoginCallback);
+        if (userID != "")
+        {
+            Database.RetrievePlayerFromDatabase(userID, LoginCallback);
+        }
+        else
+        {
+            Debug.LogWarning("Empty email");
+        }
     }
 
     /*
