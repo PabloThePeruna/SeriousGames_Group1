@@ -42,7 +42,7 @@ public class MainMenu : MonoBehaviourPun
 
     private void Start()
     {
-        GenerateHummingbirdTimeline();
+        //GenerateHummingbirdTimeline();
         // Database.PostPlayerToDatabase(new Player("testlogin", "test@login.com", "test", 0, 0, new List<bool>(), 0, new List<int>()), (bool tmp) => { });
         if (NetworkManager.isLoggedIn)
         {
@@ -91,27 +91,27 @@ public class MainMenu : MonoBehaviourPun
         //    "Obese; hypertension and Diabetic Mellitus type II",
         //    new string[] { "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "Cardiac arrest after intubation", "N/A" },
         //    "Metformine (for diabetes)\nDiuretics/betablockers (anti/hypertension treatment", 4);
-        Case patient2 = new Case("Carla", 5, "Male", "60 years", "175 cm", "110 kg",
-            new string[] { "110", "120", "0", "N/A" }, new string[] { "32", "40", "20", "N/A" },
-            new string[] { "130/90", "130/90", "0", "N/A" }, new string[] { "90", "80", "0", "N/A" },
-            new string[] { "40", "40", "40", "N/A" },
-            "Cough, shortness of breath; fever; feeling unwell 5 days ago, started to feel better but the last few days has had respiratory distress",
-            "Obese; hypertension and Diabetic Mellitus type II",
-            new string[] { "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "Cardiac arrest after intubation", "N/A" },
-            "Metformine (for diabetes)\nDiuretics/betablockers (anti/hypertension treatment", 4);
+        //Case patient2 = new Case("Carla", 5, "Male", "60 years", "175 cm", "110 kg",
+        //    new string[] { "110", "120", "0", "N/A" }, new string[] { "32", "40", "20", "N/A" },
+        //    new string[] { "130/90", "130/90", "0", "N/A" }, new string[] { "90", "80", "0", "N/A" },
+        //    new string[] { "40", "40", "40", "N/A" },
+        //    "Cough, shortness of breath; fever; feeling unwell 5 days ago, started to feel better but the last few days has had respiratory distress",
+        //    "Obese; hypertension and Diabetic Mellitus type II",
+        //    new string[] { "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "White cell count: 20;  CRP: 50;  X-ray of the chest shows bilateral signs of viral infection", "Cardiac arrest after intubation", "N/A" },
+        //    "Metformine (for diabetes)\nDiuretics/betablockers (anti/hypertension treatment", 4);
         // Post to database
-        Database.PostCaseToDatabase(patient2, (bool succeeded) =>
-        {
-            if (succeeded)
-            {
-                Debug.Log(patient2.patientName + " post success!");
-            }
-            else
-            {
+        //Database.PostCaseToDatabase(patient2, (bool succeeded) =>
+        //{
+        //    if (succeeded)
+        //    {
+        //        Debug.Log(patient2.patientName + " post success!");
+        //    }
+        //    else
+        //    {
 
-                Debug.Log(patient2.patientName + " post fail!");
-            }
-        });
+        //        Debug.Log(patient2.patientName + " post fail!");
+        //    }
+        //});
     }
 
     /*
