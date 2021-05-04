@@ -32,7 +32,7 @@ public class Notes : MonoBehaviour
     void Update()
     {
 
-       
+        DoubleTap();
 
 
     }
