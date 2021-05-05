@@ -16,8 +16,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private int emptyRoomTtl = 60000; // in milliseconds, 1 min
     private int maxPlayersPerRoom = 2;
     public string roomCode;
-    public Case patientCase1;
-    public Case patientCase2;
+    public static Case patientCase1;
+    public static Case patientCase2;
     public bool case1Set = false; // have we received case 1 from the database
     public bool case2Set = false; // have we received case 2 from the database
 

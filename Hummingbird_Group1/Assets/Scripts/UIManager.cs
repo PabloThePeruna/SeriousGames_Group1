@@ -129,12 +129,12 @@ public class UIManager : MonoBehaviourPun
 
     public IEnumerator PopulateCaseDetails()
     {
-        while (NetworkManager.instance.patientCase1.patientName == "")
+        while (NetworkManager.patientCase1.patientName == "")
         {
             yield return null;
         }
 
-        case1 = NetworkManager.instance.patientCase1;
+        case1 = NetworkManager.patientCase1;
 
         OrganSelect os1 = gameObject.GetComponent<OrganSelect>();
         os1.hummingBirdOrganNumber = case1.organNum;
@@ -176,12 +176,12 @@ public class UIManager : MonoBehaviourPun
         patient1LessDetailsTemp.text = case1.temperature[0];
         patient1LessDetailsLab.text = case1.lab[0];
 
-        while (NetworkManager.instance.patientCase2.patientName == "")
+        while (NetworkManager.patientCase2.patientName == "")
         {
             yield return null;
         }
 
-        case2 = NetworkManager.instance.patientCase2;
+        case2 = NetworkManager.patientCase2;
 
         OrganSelect2 os2 = gameObject.GetComponent<OrganSelect2>();
         os2.hummingBirdOrganNumber2 = case2.organNum;

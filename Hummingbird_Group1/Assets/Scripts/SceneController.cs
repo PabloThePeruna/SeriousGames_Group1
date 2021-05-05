@@ -13,7 +13,10 @@ public class SceneController : MonoBehaviour
 
     public void LogOut()
     {
-        NetworkManager.instance.LogOut();
+        if (NetworkManager.instance != null)
+        {
+            NetworkManager.instance.LogOut();
+        }
         SceneManager.LoadScene(0);
     }
 
