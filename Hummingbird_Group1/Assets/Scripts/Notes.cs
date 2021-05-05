@@ -15,7 +15,7 @@ public class Notes : MonoBehaviourPun
 
     public Button commentBtn;
     public Button notesBtn;
-    public bool IsClicked;
+    public bool IsClicked = false;
     
     public GameObject Note;
 
@@ -36,7 +36,7 @@ public class Notes : MonoBehaviourPun
     {
         username = NetworkManager.localPlayer.nickname;
         commentBtn.onClick.AddListener(Comment);
-        notesBtn.onClick.AddListener(ShowNotes);
+        notesBtn.onClick.AddListener(StartRoutine);
 
         Note.transform.localScale = new Vector3(0f, 0f, 0f);
         Note.transform.localPosition = new Vector3(0f, 0f, 0f);
@@ -93,16 +93,22 @@ public class Notes : MonoBehaviourPun
     }
 
     // Set a note active while double tapping
-    public void ShowNotes()
+    IEnumerator ShowNotes()
     {
         if(IsClicked == false)
         {
-            Note.gameObject.SetActive(true);   // Set Notes to be seen
+            Debug.Log("toimii");
+
+            Note.gameObject.SetActive(true);// Set Notes to be seen
+            yield return new WaitForSeconds(0.5f);
             IsClicked = true;
         }
         else
         {
+            Debug.Log("toimii2");
+        
             Note.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
             IsClicked = false;
         }
         
@@ -136,6 +142,11 @@ public class Notes : MonoBehaviourPun
         public Text textObject;
 
 
+    }
+
+    public void StartRoutine()
+    {
+        StartCoroutine(ShowNotes());
     }
 
 }
