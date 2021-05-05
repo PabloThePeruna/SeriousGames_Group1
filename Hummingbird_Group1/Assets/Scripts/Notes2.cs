@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Photon.Pun;
 
-public class Notes2 : MonoBehaviour
+public class Notes2 : MonoBehaviourPun
 {
     public int maxMessages = 50; //Showing only 30 last messages
 
@@ -51,6 +52,7 @@ public class Notes2 : MonoBehaviour
     }
 
     //Create and add written note to messagelist
+    [PunRPC]
     public void SendMessageToChat(string text)
     {
         // Remove and Delete old messages
@@ -84,7 +86,7 @@ public class Notes2 : MonoBehaviour
         {
 
             chatBox2.ActivateInputField();
-            SendMessageToChat(username + ": " + chatBox2.text);  //add mark before a note
+            photonView.RPC("SendMessageToChat", RpcTarget.All, username + ": " + chatBox2.text);  //add mark before a note
             chatBox2.text = "";
 
         }

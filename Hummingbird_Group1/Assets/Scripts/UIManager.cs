@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviourPun
     public Camera cam2;
 
     //Buttons
-    
+
     public Button moreDetailsButt1;
     public Button moreDetailsButt2;
 
@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviourPun
     [SerializeField] private TextMeshProUGUI patient1MoreDetailsTemp;
     [SerializeField] private TextMeshProUGUI patient1MoreDetailsOxygen;
     [SerializeField] private TextMeshProUGUI patient1MoreDetailsMedicine;
-    //[SerializeField] private TextMeshProUGUI patient1MoreDetailsLab;
+    [SerializeField] private TextMeshProUGUI patient1MoreDetailsLab;
     [SerializeField] private TextMeshProUGUI patient1PrognosisText;
 
     [Header("Case 1: Less Details")]
@@ -92,7 +92,7 @@ public class UIManager : MonoBehaviourPun
     [SerializeField] private TextMeshProUGUI patient2MoreDetailsTemp;
     [SerializeField] private TextMeshProUGUI patient2MoreDetailsOxygen;
     [SerializeField] private TextMeshProUGUI patient2MoreDetailsMedicine;
-    //[SerializeField] private TextMeshProUGUI patient2MoreDetailsLab;
+    [SerializeField] private TextMeshProUGUI patient2MoreDetailsLab;
     [SerializeField] private TextMeshProUGUI patient2PrognosisText;
 
     [Header("Case 2: Less Details")]
@@ -151,7 +151,7 @@ public class UIManager : MonoBehaviourPun
         patient1MoreDetailsTemp.text = case1.temperature[0];
         patient1MoreDetailsOxygen.text = case1.patientO2Sat[0];
         patient1MoreDetailsMedicine.text = case1.medsTaken;
-        //patient1MoreDetailsLab.text = case1;
+        patient1MoreDetailsLab.text = case1.lab[0];
 
         patient1LessDetailsName.text = case1.patientName;
         patient1LessDetailsGender.text = case1.gender;
@@ -175,7 +175,7 @@ public class UIManager : MonoBehaviourPun
         patient1LessDetailsOxygen.text = case1.patientO2Sat[0];
         patient1LessDetailsTemp.text = case1.temperature[0];
         patient1LessDetailsLab.text = case1.lab[0];
-        
+
         while (NetworkManager.instance.patientCase2.patientName == "")
         {
             yield return null;
@@ -198,24 +198,12 @@ public class UIManager : MonoBehaviourPun
         patient2MoreDetailsTemp.text = case2.temperature[0];
         patient2MoreDetailsOxygen.text = case2.patientO2Sat[0];
         patient2MoreDetailsMedicine.text = case2.medsTaken;
-        //patient2MoreDetailsLab.text = case2;
+        patient2MoreDetailsLab.text = case2.lab[0];
 
         patient2LessDetailsName.text = case2.patientName;
         patient2LessDetailsGender.text = case2.gender;
         patient2LessDetailsAge.text = case2.age;
-        if (case2.patientSympDesc.Length > 55)
-        {
-            string shortDesc = case2.patientSympDesc.Substring(0, 55);
-            while (shortDesc[shortDesc.Length - 1] != ' ')
-            {
-                shortDesc = shortDesc.Remove(shortDesc.Length - 1);
-            }
-            patient2LessDetailsSymptoms.text = shortDesc + "...";
-        }
-        else
-        {
-            patient2LessDetailsSymptoms.text = case2.patientSympDesc;
-        }
+        patient2LessDetailsSymptoms.text = case2.patientSympDesc;
         patient2LessDetailsHR.text = case2.patientHR[0];
         patient2LessDetailsBP.text = case2.patientBP[0];
         patient2LessDetailsRR.text = case2.patientRR[0];
@@ -235,7 +223,7 @@ public class UIManager : MonoBehaviourPun
             patient1MoreDetailsRR.text = case1.patientRR[0];
             patient1MoreDetailsTemp.text = case1.temperature[0];
             patient1MoreDetailsOxygen.text = case1.patientO2Sat[0];
-            //patient1MoreDetailsLab.text = case1.lab[0];
+            patient1MoreDetailsLab.text = case1.lab[0];
         }
         else if (slider.value < 0.5f)
         {
@@ -245,7 +233,7 @@ public class UIManager : MonoBehaviourPun
             patient1MoreDetailsRR.text = case1.patientRR[1];
             patient1MoreDetailsTemp.text = case1.temperature[1];
             patient1MoreDetailsOxygen.text = case1.patientO2Sat[1];
-            //patient1MoreDetailsLab.text = case1.lab[1];
+            patient1MoreDetailsLab.text = case1.lab[1];
         }
         else if (slider.value < 0.75)
         {
@@ -255,7 +243,7 @@ public class UIManager : MonoBehaviourPun
             patient1MoreDetailsRR.text = case1.patientRR[2];
             patient1MoreDetailsTemp.text = case1.temperature[2];
             patient1MoreDetailsOxygen.text = case1.patientO2Sat[2];
-            //patient1MoreDetailsLab.text = case1.lab[2];
+            patient1MoreDetailsLab.text = case1.lab[2];
         }
         else
         {
@@ -265,7 +253,7 @@ public class UIManager : MonoBehaviourPun
             patient1MoreDetailsRR.text = case1.patientRR[3];
             patient1MoreDetailsTemp.text = case1.temperature[3];
             patient1MoreDetailsOxygen.text = case1.patientO2Sat[3];
-            //patient1MoreDetailsLab.text = case1.lab[3];
+            patient1MoreDetailsLab.text = case1.lab[3];
         }
     }
 
@@ -280,7 +268,7 @@ public class UIManager : MonoBehaviourPun
             patient2MoreDetailsRR.text = case2.patientRR[0];
             patient2MoreDetailsTemp.text = case2.temperature[0];
             patient2MoreDetailsOxygen.text = case2.patientO2Sat[0];
-            //patient2MoreDetailsLab.text = case2.lab[0];
+            patient2MoreDetailsLab.text = case2.lab[0];
         }
         else if (slider.value < 0.5f)
         {
@@ -290,7 +278,7 @@ public class UIManager : MonoBehaviourPun
             patient2MoreDetailsRR.text = case2.patientRR[1];
             patient2MoreDetailsTemp.text = case2.temperature[1];
             patient2MoreDetailsOxygen.text = case2.patientO2Sat[1];
-            //patient2MoreDetailsLab.text = case2.lab[1];
+            patient2MoreDetailsLab.text = case2.lab[1];
         }
         else if (slider.value < 0.75)
         {
@@ -300,7 +288,7 @@ public class UIManager : MonoBehaviourPun
             patient2MoreDetailsRR.text = case2.patientRR[2];
             patient2MoreDetailsTemp.text = case2.temperature[2];
             patient2MoreDetailsOxygen.text = case2.patientO2Sat[2];
-            //patient2MoreDetailsLab.text = case2.lab[2];
+            patient2MoreDetailsLab.text = case2.lab[2];
         }
         else
         {
@@ -310,7 +298,7 @@ public class UIManager : MonoBehaviourPun
             patient2MoreDetailsRR.text = case2.patientRR[3];
             patient2MoreDetailsTemp.text = case2.temperature[3];
             patient2MoreDetailsOxygen.text = case2.patientO2Sat[3];
-            //patient2MoreDetailsLab.text = case2.lab[3];
+            patient2MoreDetailsLab.text = case2.lab[3];
         }
     }
 
@@ -350,7 +338,7 @@ public class UIManager : MonoBehaviourPun
     {
 
         MoreDetailsClick2();
-        
+
     }
 
     void SwapCases2()
@@ -365,12 +353,12 @@ public class UIManager : MonoBehaviourPun
     }
 
     IEnumerator WaitForTimerToEvaluateChoice(int choice)
-    { 
+    {
         yield return null;
         bool won = false;
         if (choice == 1)
         {
-            if (case1.patNum == 5 || 
+            if (case1.patNum == 5 ||
                 (case1.patNum == 4 && case2.patNum != 5) ||
                 (case1.patNum == 2 && case2.patNum < 4) ||
                 (case1.patNum == 1 && case2.patNum == 3))
@@ -401,256 +389,5 @@ public class UIManager : MonoBehaviourPun
         NetworkManager.localPlayer.Save();
         NetworkManager.instance.LeaveRoom();
         sceneController.LoadScene("Feedback");
-    }
-
-    public void SendNote(GameObject infoTextObject)
-    {
-        //string message = infoTextObject.transform.GetComponentInChildren<TMP_InputField>().text;
-        //if (infoTextObject == patient1MoreDetailsName || infoTextObject == patient1LessDetailsName)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.name, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsGender || infoTextObject == patient1LessDetailsGender)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.gender, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsAge || infoTextObject == patient1LessDetailsAge)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.age, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsSymptoms || infoTextObject == patient1LessDetailsSymptoms)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.symptoms, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsWeight)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.weight, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsHeight)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.height, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsHR || infoTextObject == patient1LessDetailsHR)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.hr, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsBP || infoTextObject == patient1LessDetailsBP)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.bp, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsRR || infoTextObject == patient1LessDetailsRR)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.rr, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsTemp || infoTextObject == patient1LessDetailsTemp)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.temp, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsOxygen || infoTextObject == patient1LessDetailsOxygen)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.o2, message);
-        //}
-        //else if (infoTextObject == patient1MoreDetailsMedicine)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.meds, message);
-        //}
-        //else if (infoTextObject == patient1LessDetailsLab) //patient1MoreDetailsLab.text = case1;
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 1, (int)CaseData.labs, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsName || infoTextObject == patient2LessDetailsName)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.name, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsGender || infoTextObject == patient2LessDetailsGender)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.gender, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsAge || infoTextObject == patient2LessDetailsAge)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.age, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsSymptoms || infoTextObject == patient2LessDetailsSymptoms)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.symptoms, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsWeight)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.weight, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsHeight)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.height, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsHR || infoTextObject == patient2LessDetailsHR)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.hr, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsBP || infoTextObject == patient2LessDetailsBP)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.bp, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsRR || infoTextObject == patient2LessDetailsRR)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.rr, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsTemp || infoTextObject == patient2LessDetailsTemp)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.temp, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsOxygen || infoTextObject == patient2LessDetailsOxygen)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.o2, message);
-        //}
-        //else if (infoTextObject == patient2MoreDetailsMedicine)
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.meds, message);
-        //}
-        //else if (infoTextObject == patient2LessDetailsLab)//patient2MoreDetailsLab.text = case2;
-        //{
-        //    photonView.RPC("AddNote", RpcTarget.All, PhotonNetwork.NickName, 2, (int)CaseData.labs, message);
-        //}
-    }
-
-    /*
-     * Find the correct note to add a new comment and call UpdateComments() for that note
-     * Nickname is the nickname of the player writing the note
-     * CaseNum is either 1 or 2
-     * Location is a CaseData cast as an int
-     * Message is the note to add
-     */
-    [PunRPC]
-    public void AddNote(string nickname, int caseNum, int location, string message)
-    {
-        //if (caseNum == 1)
-        //{
-        //    if (location == (int)CaseData.name)
-        //    {
-        //        patient1LessDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.age)
-        //    {
-        //        patient1LessDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.gender)
-        //    {
-        //        patient1LessDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.weight)
-        //    {
-        //        patient1MoreDetailsWeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.height)
-        //    {
-        //        patient1MoreDetailsHeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.symptoms)
-        //    {
-        //        patient1LessDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.hr)
-        //    {
-        //        patient1LessDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.bp)
-        //    {
-        //        patient1LessDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.rr)
-        //    {
-        //        patient1LessDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.temp)
-        //    {
-        //        patient1LessDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.o2)
-        //    {
-        //        patient1LessDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient1MoreDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.meds)
-        //    {
-        //        patient1MoreDetailsMedicine.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if(location == (int)CaseData.labs)
-        //    {
-        //        patient1LessDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        //patient1MoreDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //}
-        //else if (caseNum == 2)
-        //{
-        //    if (location == (int)CaseData.name)
-        //    {
-        //        patient2LessDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsName.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.age)
-        //    {
-        //        patient2LessDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsAge.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.gender)
-        //    {
-        //        patient2LessDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsGender.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.weight)
-        //    {
-        //        patient2MoreDetailsWeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.height)
-        //    {
-        //        patient2MoreDetailsHeight.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.symptoms)
-        //    {
-        //        patient2LessDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsSymptoms.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.hr)
-        //    {
-        //        patient2LessDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsHR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.bp)
-        //    {
-        //        patient2LessDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsBP.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.rr)
-        //    {
-        //        patient2LessDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsRR.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.temp)
-        //    {
-        //        patient2LessDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsTemp.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.o2)
-        //    {
-        //        patient2LessDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        patient2MoreDetailsOxygen.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.meds)
-        //    {
-        //        patient2MoreDetailsMedicine.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //    else if (location == (int)CaseData.labs)
-        //    {
-        //        patient2LessDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //        //patient2MoreDetailsLab.transform.GetComponentInChildren<Notes>().UpdateComments(message);
-        //    }
-        //}
     }
 }
